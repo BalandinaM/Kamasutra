@@ -7,7 +7,7 @@ const Post = (props) => {
     <li className={p.post}>
       <img className={p.img} alt='Аватар пользователя' src={props.src} width='50' height='50'/>
       <p>{ props.message }</p>
-      <LikeCounter counter={props.counter} />
+      <LikeCounter counter={props.like} />
     </li>
   )
 }

@@ -2,3 +2,21 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.textarea {
+  width: 500px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.wrapButton {
+  width: 500px;
+  display: flex;
+  gap: 30px;
+  justify-content: flex-end;
+}
+
+.wrapButton button {
+  display: block;
+  margin-bottom: 20px;
+}

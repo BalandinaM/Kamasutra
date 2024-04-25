@@ -12,13 +12,3 @@
   padding: 15px;
 }
 
-.link {
-  color: #172D13;
-  text-decoration: none;
-}
-
-.link.active {
-  color: #6BB77B;
-  font-weight: 700;
-  font-size: 20px;
-}

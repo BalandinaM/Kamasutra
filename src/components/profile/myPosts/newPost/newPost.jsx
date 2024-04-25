@@ -4,9 +4,11 @@ import p from './newPost.module.css';
 const NewPost = () => {
   return (
     <div className={p.newPost}>
-      <textarea></textarea>
-      <button>Add post</button>
-      <button>Delete post</button>
+      <textarea className={p.textarea}></textarea>
+      <div className={p.wrapButton}>
+        <button>Delete post</button>
+        <button>Add post</button>
+      </div>
     </div>
   )
 }

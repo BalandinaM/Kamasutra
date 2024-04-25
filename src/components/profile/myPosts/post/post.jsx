@@ -5,7 +5,8 @@ import LikeCounter from './likeCounter/likeCounter';
 const Post = (props) => {
   return (
     <li className={p.post}>
-      { props.message }
+      <img className={p.img} alt='Аватар пользователя' src={props.src} width='50' height='50'/>
+      <p>{ props.message }</p>
       <LikeCounter counter={props.counter} />
     </li>
   )

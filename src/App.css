@@ -46,7 +46,7 @@
   grid-template-areas:
     "header header"
     "nav main-content";
-  gap: 10px;
+  row-gap: 10px;
   background-color: #172D13;
 }
 

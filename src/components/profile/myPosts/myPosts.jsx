@@ -12,14 +12,14 @@ const MyPosts = () => {
     {id: 3, message: 'It is my first post! Hello, world! Hello, React!', like: '100'},
   ]
 
+  let postElems = postsData.map(p => <Post message={p.message} like={p.like} src={srcImg}/>)
+
   return (
     <section className={p.wrapPosts}>
       <h3>My posts</h3>
       <NewPost />
       <ul className={p.listPosts}>
-        <Post message={postsData[0].message} like={postsData[0].like} src={srcImg}/>
-        <Post message={postsData[1].message} like={postsData[1].like} src={srcImg}/>
-        <Post message={postsData[2].message} like={postsData[2].like} src={srcImg}/>
+        { postElems }
       </ul>
     </section>
   )

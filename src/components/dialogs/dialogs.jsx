@@ -15,13 +15,12 @@ const Dialogs = () => {
     {id: 6, name: 'Dimon'},
   ]
 
+  let dialogsElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
+
   return (
     <section className={d.dialogs}>
       <ul className={d.list}>
-        <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-        <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-        <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
-        <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
+        { dialogsElements }
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk />

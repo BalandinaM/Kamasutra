@@ -12,12 +12,11 @@ const Talk = (props) => {
     {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
   ]
 
+  let postElems = postData.map(p => <Message message={p.message}/>);
+
   return (
     <div>
-        <Message message={postData[0].message}/>
-        <Message message={postData[1].message}/>
-        <Message message={postData[2].message}/>
-        <Message message={postData[3].message}/>
+        { postElems }
     </div>
   )
 }

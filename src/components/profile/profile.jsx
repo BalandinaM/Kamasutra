@@ -15,7 +15,7 @@ const Profile = (props) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts postsData = {props.postsData} srcImg = {props.srcImg}/>
+      <MyPosts postsData = {props.state.postsData} srcImg = {props.state.srcImg}/>
     </div>
   )
 }

@@ -22,7 +22,7 @@ const Dialogs = (props) => {
   //   {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
   // ]
 
-  let dialogsElements = props.dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
+  let dialogsElements = props.state.dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
 
   return (
     <section className={d.dialogs}>
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
         { dialogsElements }
       </ul>
       {/* Диалог с конкретным пользователем */}
-      <Talk postData = {props.postData}/>
+      <Talk postData = {props.state.postData}/>
     </section>
   )
 }

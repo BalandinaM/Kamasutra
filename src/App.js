@@ -15,7 +15,7 @@ function App(props) {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar />
+        <Navbar state = {props.state.navBar}/>
         <div className="app-wrapper-content">
           <Routes>
             {/* <Route path='/profile' element={ <Profile postsData = {postsData} srcImg = {srcImg}/> }/> */}

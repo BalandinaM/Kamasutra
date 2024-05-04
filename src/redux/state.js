@@ -50,6 +50,17 @@ let state = {
       {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
     ],
   },
+
+  navBar: {
+    navList: [
+      {item: 'Profile', href:'/profile'},
+      {item:'Messages', href:'/dialogs'},
+      {item:'News', href:'/news'},
+      {item:'Music', href:'/music'},
+      {item:'Settings', href:'/settings'},
+    ]
+  }
+
 }
 
 export default state;

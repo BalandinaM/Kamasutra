@@ -2,6 +2,7 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
+import NewMessage from './newMessage/newMessage';
 
 
 const Dialogs = (props) => {
@@ -15,6 +16,7 @@ const Dialogs = (props) => {
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk postData = {props.state.postData}/>
+      <NewMessage />
     </section>
   )
 }

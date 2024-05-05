@@ -6,7 +6,7 @@ import Talk from './talk/talk';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.state.dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
+  let dialogsElements = props.state.dialogsData.map(d => <DialogItem userName={d.name} id={d.id} hrefImg={d.hrefImg}/>);
 
   return (
     <section className={d.dialogs}>

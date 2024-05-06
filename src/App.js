@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from './components/header/header';
 import Navbar from './components/navbar/navbar';
-// eslint-disable-next-line
 import Profile from './components/profile/profile';
 import Dialogs from './components/dialogs/dialogs';
 import {BrowserRouter, Route, Routes} from "react-router-dom";

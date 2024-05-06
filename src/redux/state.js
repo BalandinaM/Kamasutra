@@ -21,6 +21,8 @@
 //   {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
 // ];
 
+import { rerenderEntireTree } from "../render";
+
 let state = {
 
   profilePage: {
@@ -77,6 +79,7 @@ export let addPost = (postMessage) => {
   };
 
   state.profilePage.postsData.push(newPost);
+  rerenderEntireTree(state);
 }
 
 export default state;

@@ -9,7 +9,7 @@ const MyPosts = (props) => {
   return (
     <section className={p.wrapPosts}>
       <h3>My posts</h3>
-      <NewPost />
+      <NewPost  addPost = {props.addPost}/>
       <ul className={p.listPosts}>
         { postElems }
       </ul>

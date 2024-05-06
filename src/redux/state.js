@@ -66,7 +66,17 @@ let state = {
     //   {userName: 'Olga', hrefImg: 'https://avavatar.ru/images/full/47/HF24oiPlGyYzBjF2.jpg', href: 'id#'},
     // ]
   }
+}
 
+export let addPost = (postMessage) => {
+  //debugger;
+  let newPost = {
+    id: 4,
+    message: postMessage,
+    like: 0,
+  };
+
+  state.profilePage.postsData.push(newPost);
 }
 
 export default state;

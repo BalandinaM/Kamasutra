@@ -21,7 +21,11 @@
 //   {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
 // ];
 
-import { rerenderEntireTree } from "../render";
+//import { rerenderEntireTree } from "../render";
+
+let rerenderEntireTree = () => {
+  console.log('state change')
+}
 
 let state = {
 
@@ -72,7 +76,7 @@ let state = {
   }
 }
 
-export let addPost = () => {
+export const addPost = () => {
   //debugger;
   let newPost = {
     id: 4,
@@ -85,9 +89,13 @@ export let addPost = () => {
   rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
 }
 
 export default state;

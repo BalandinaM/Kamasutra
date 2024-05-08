@@ -19,9 +19,8 @@ function App(props) {
           <Routes>
             {/* <Route path='/profile' element={ <Profile postsData = {postsData} srcImg = {srcImg}/> }/> */}
             <Route path='/profile' element = { <Profile state = {props.state.profilePage}
-                                                        addPost = {props.addPost}
-                                                        newPostText = {props.state.profilePage.newPostText}
-                                                        updateNewPostText = {props.updateNewPostText}/> }/>
+                                                        dispatch = {props.dispatch}
+                                                        newPostText = {props.state.profilePage.newPostText}/> }/>
             <Route path='/dialogs' element = { <Dialogs state = {props.state.dialogsPage}/> }/>
             <Route path='/news' element = { <News /> }/>
             <Route path='/music' element = { <Music /> }/>

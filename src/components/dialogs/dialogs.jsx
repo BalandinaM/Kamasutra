@@ -16,7 +16,7 @@ const Dialogs = (props) => {
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk postData = {props.state.postData}/>
-      <NewMessage />
+      <NewMessage dispatch = {props.dispatch} newMessageBody = {props.newMessageBody}/>
     </section>
   )
 }

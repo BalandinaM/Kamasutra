@@ -1,19 +1,27 @@
 import React from "react";
 import n from './newMessage.module.css';
+import { addMessageActionCreator, updateNewMessageActionCreator } from "../../../redux/state";
 
 
-const NewMessage = () => {
+const NewMessage = (props) => {
 
   let newMessageElement = React.createRef();
 
   let sendMessage = () => {
-    let text = newMessageElement.current.value;
-    alert(text);
+    props.dispatch(addMessageActionCreator());
+  }
+
+  let onMessageChange = () => {
+    let newMessage = newMessageElement.current.value;
+    props.dispatch(updateNewMessageActionCreator(newMessage));
   }
 
   return (
     <div className={n.wrap}>
-      <textarea ref={newMessageElement} className={n.textarea}></textarea>
+      <textarea ref={newMessageElement}
+                onChange={onMessageChange}
+                value={props.newMessageBody}
+                className={n.textarea} />
       <button onClick={ sendMessage } className={n.button}>Send message</button>
     </div>
   )

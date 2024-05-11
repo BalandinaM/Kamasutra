@@ -8,7 +8,8 @@ const NewMessage = (props) => {
   let newMessageElement = React.createRef();
 
   let sendMessage = () => {
-    props.dispatch(addMessageActionCreator());
+    let newMessage = newMessageElement.current.value;
+    props.dispatch(addMessageActionCreator(newMessage));
   }
 
   let onMessageChange = () => {

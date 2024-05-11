@@ -4,7 +4,7 @@ import NewPost from './newPost/newPost';
 import Post from './post/post';
 
 const MyPosts = (props) => {
-  let postElems = props.postsData.map(p => <Post message={p.message} like={p.like} src={props.srcImg}/>)
+  let postElems = props.postsData.map(p => <Post key={p.id} message={p.message} like={p.like} src={props.srcImg}/>)
 
   return (
     <section className={p.wrapPosts}>

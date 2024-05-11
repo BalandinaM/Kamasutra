@@ -4,7 +4,7 @@ import NavList from './navList/navList';
 import SideBar from './sideBar/sidebar';
 
 const Navbar = (props) => {
-  //debugger;
+  // debugger;
   return <nav className={n.nav}>
     <NavList navList = {props.nav.navList}/>
     <SideBar friendsList = {props.aside}/>

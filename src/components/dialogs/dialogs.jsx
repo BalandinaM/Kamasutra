@@ -7,7 +7,7 @@ import NewMessage from './newMessage/newMessage';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.state.dialogsData.map(d => <DialogItem userName={d.name} id={d.id} hrefImg={d.hrefImg}/>);
+  let dialogsElements = props.state.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
 
   return (
     <section className={d.dialogs}>

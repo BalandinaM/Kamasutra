@@ -2,12 +2,13 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
-import NewMessage from './newMessage/newMessage';
-
+//import NewMessage from './newMessage/newMessage';
+import NewMessageContainer from './newMessage/newMessageContainer';
 
 const Dialogs = (props) => {
+  debugger;
 
-  let dialogsElements = props.state.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
+  let dialogsElements = props.dialogsPage.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
 
   return (
     <section className={d.dialogs}>
@@ -15,8 +16,9 @@ const Dialogs = (props) => {
         { dialogsElements }
       </ul>
       {/* Диалог с конкретным пользователем */}
-      <Talk postData = {props.state.postData}/>
-      <NewMessage dispatch = {props.dispatch} newMessageBody = {props.newMessageBody}/>
+      <Talk postData = {props.dialogsPage.postData}/>
+      {/* <NewMessage dispatch = {props.dispatch} newMessageBody = {props.newMessageBody}/> */}
+      <NewMessageContainer />
     </section>
   )
 }

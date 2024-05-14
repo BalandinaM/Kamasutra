@@ -1,13 +1,13 @@
 import React from 'react';
 import n from './navbar.module.css';
-import NavList from './navList/navList';
-import SideBar from './sideBar/sidebar';
+import NavListContainer from './navList/navListContainer';
+import SideBarContainer from './sideBar/sidebarContainer';
 
-const Navbar = (props) => {
+const Navbar = () => {
   // debugger;
   return <nav className={n.nav}>
-    <NavList navList = {props.nav.navList}/>
-    <SideBar friendsList = {props.aside}/>
+    <NavListContainer />
+    <SideBarContainer />
   </nav>
 }
 

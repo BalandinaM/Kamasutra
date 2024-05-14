@@ -6,7 +6,7 @@ import Talk from './talk/talk';
 import NewMessageContainer from './newMessage/newMessageContainer';
 
 const Dialogs = (props) => {
-  debugger;
+  //debugger;
 
   let dialogsElements = props.dialogsPage.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
 

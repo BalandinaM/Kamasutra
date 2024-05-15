@@ -10,7 +10,6 @@ import Settings from './components/settingsLink/settings';
 import DialogsContainer from './components/dialogs/dialogsContainer';
 
 function App(props) {
- //debugger;
   return (
     <BrowserRouter>
       <div className='app-wrapper'>

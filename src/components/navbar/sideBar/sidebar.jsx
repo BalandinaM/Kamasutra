@@ -1,7 +1,6 @@
 import React from 'react';
 import FriendsList from './friendsList/friendsList';
 import s from './sidebar.module.css';
-//import NavList from './navList/navList';
 
 const SideBar = (props) => {
   return (

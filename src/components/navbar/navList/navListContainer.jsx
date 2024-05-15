@@ -1,15 +1,12 @@
-import React from 'react';
 import NavList from './navList';
-import StoreContext from '../../../StoreContext';
+import { connect } from 'react-redux';
 
-const NavListContainer = () => {
-
-  return <StoreContext.Consumer>
-    { store => {
-      return <NavList navList={store.getState().navBar.navList}/>
-      }
-    }
-  </StoreContext.Consumer>
+let mapStateToProps = (state) => {
+  return {
+    navList: state.navBar.navList,
+  }
 }
+
+const NavListContainer = connect(mapStateToProps)(NavList);
 
 export default NavListContainer;

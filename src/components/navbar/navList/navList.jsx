@@ -3,7 +3,6 @@ import n from './navList.module.css';
 import NavItem from './navItem/navItem';
 
 const NavList = (props) => {
-  //debugger;
   let navItems = props.navList.map(n => <NavItem key = {n.id} item={n.item} href={n.href}/>)
 
   return (

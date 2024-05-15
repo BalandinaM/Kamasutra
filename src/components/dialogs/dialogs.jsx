@@ -2,7 +2,6 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
-//import NewMessage from './newMessage/newMessage';
 import NewMessageContainer from './newMessage/newMessageContainer';
 
 const Dialogs = (props) => {

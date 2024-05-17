@@ -5,7 +5,7 @@ import Message from './message/message';
 
 const Talk = (props) => {
 
-  let postElems = props.postData.map(p => <Message message={p.message}/>);
+  let postElems = props.postData.map(p => <Message message={p.message} key={p.id}/>);
 
   return (
     <div>

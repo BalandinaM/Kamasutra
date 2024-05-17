@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
   return {
-    dialogsPage: state.dialogsPage.newMessageBody,
+    plaseholder: state.dialogsPage.newMessageBody,
   }
 }
 

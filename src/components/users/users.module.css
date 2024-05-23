@@ -1,0 +1,15 @@
+.users {
+  padding: 25px;
+}
+
+.button {
+  margin: 0 auto;
+  display: block;
+  box-sizing: border-box;
+  padding: 8px 20px;
+  background-color: #468f56;
+  color:#172D13;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}

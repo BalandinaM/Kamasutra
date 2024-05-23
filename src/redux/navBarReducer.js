@@ -7,6 +7,7 @@ let initialState = {
     {id:3, item:'News', href:'/news'},
     {id:4, item:'Music', href:'/music'},
     {id:5, item:'Settings', href:'/settings'},
+    {id:6, item:'Search friends', href:'/users'},
   ],
 };
 

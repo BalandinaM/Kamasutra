@@ -6,8 +6,7 @@ import avatar from '../../assets/image/avatar.png';
 
 class Users extends React.Component {
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     axios.get("https://social-network.samuraijs.com/api/1.0/users", {
       headers: {
         'API-KEY': '8312cd1f-3942-4c8e-84a0-fb6a8c6',

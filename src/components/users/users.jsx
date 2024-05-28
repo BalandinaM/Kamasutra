@@ -28,8 +28,6 @@ class Users extends React.Component {
       }
     }).then(response => {
       this.props.setUsers(response.data.items);
-      this.props.setTotalUsersCount(response.data.totalCount);
-      // взять с сервака реальные данные, но их там слишком много
     });
   }
 

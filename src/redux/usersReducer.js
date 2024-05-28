@@ -1,6 +1,8 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 
 let initialState = {
@@ -12,6 +14,9 @@ let initialState = {
     // {id: 5, followed: true, fullName: {name: 'Helen', surname: 'Peterson'}, location: {country: 'Russia', city: 'Ekaterinburg'}, title: 'Hey-Hey!!!', hrefImg: 'https://kartinki.pics/uploads/posts/2022-05/1652237087_1-kartinkin-net-p-kartinki-na-avu-sobaki-1.jpg',},
     // {id: 6, followed: true, fullName: {name: 'Dimon', surname: 'Petrov'}, location: {country: 'Russia', city: 'Ekaterinburg'}, title: 'Hey-Hey!!!', hrefImg: 'https://i.pinimg.com/originals/f8/2c/4d/f82c4d72749605a09c761cd0825ff330.jpg',},
   ],
+  pageSize: 5, //задаем сами сколько нужно
+  totalUsersCount: 25, //эта цифра должна приходить с сервака
+  currentPage: 3,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -40,6 +45,18 @@ const usersReducer = (state = initialState, action) => {
         ...state.usersData,
       })
     }
+    case SET_CURRENT_PAGE: {
+      return Object.assign({}, state, {
+        currentPage: action.currentPage,
+        ...state.currentPage,
+      })
+    }
+    case SET_TOTAL_USERS_COUNT: {
+      return Object.assign({}, state, {
+        totalUsersCount: action.totalUsersCount,
+        ...state.totalUsersCount,
+      })
+    }
 
     default:
       return state;
@@ -49,5 +66,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({ type: FOLLOW, userId });
 export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount })
 
 export default usersReducer;

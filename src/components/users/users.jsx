@@ -20,9 +20,9 @@ let Users = (props) => {
     return (
       <section className={style.users}>
         <h2 className={style.title}>Добавь еще друзей!</h2>
-        <div>
+        <div className={style.wrapPages}>
           {pages.map(p => {
-            return <span key={pages.indexOf(p)} className={props.currentPage === p ? style.currentPage : undefined}
+            return <span key={pages.indexOf(p)} className={props.currentPage === p ? style.currentPage : style.page}
             onClick={(e) => {props.onPageChanged(p)}}>{p}</span>
           })}
         </div>

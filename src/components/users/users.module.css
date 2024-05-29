@@ -14,9 +14,25 @@
   border-radius: 5px;
 }
 
+.wrapPages {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.page {
+  display: inline-flex;
+  padding: 8px 13px 5px;
+  border: 2px solid #D76F30;
+}
+
 .currentPage {
   font-size: 20px;
   font-weight: 700;
+  background-color: #D76F30;
+  color: #172D13;
+  padding: 6px 15px 5px;
 }
 
 .list {
@@ -84,7 +100,7 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 p {

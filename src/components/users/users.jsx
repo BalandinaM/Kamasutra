@@ -30,12 +30,14 @@ let Users = (props) => {
           { props.usersData.map(u =>
             <li className={style.item} key={u.id}>
             <div className={style.leftBlock}>
-              <img className={style.img} src={u.photos.small != null ? u.photos.small : avatar } alt={`Фото ${u.name} ${u.surname}`} width='40' height='40'/>
+              <NavLink to={'/profile/'+ u.id}>
+                <img className={style.img} src={u.photos.small != null ? u.photos.small : avatar } alt={`Фото ${u.name} ${u.surname}`} width='40' height='40'/>
+              </NavLink>
               {u.followed
                 ? <button onClick={() => props.unfollow(u.id)} className={style.item_button} >Unfollow</button>
                 : <button onClick={() => props.follow(u.id)} className={style.item_button} >Follow</button> }
             </div>
-            <NavLink className={style.link} to={'/users/' + props.id}>
+            <div className={style.rightBlock}>
               <div className={style.info}>
                 <p className={style.name}>{u.name}&#32;<span>{u.surname != null ? u.fullName.surname : "Unknown"}</span></p>
                 <p className={style.title}>{u.status}</p>
@@ -44,7 +46,7 @@ let Users = (props) => {
                 <p>{"u.location.country,"}</p>
                 <p>{"u.location.city"}</p>
               </div>
-            </NavLink>
+            </div>
         </li>
         )}
         </ul>

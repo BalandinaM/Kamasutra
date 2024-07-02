@@ -13,8 +13,8 @@ class UsersContainer extends React.Component {
         `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
         {
           headers: {
-            "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c6",
-            Authorization: "Bearer b35147cb-1f7d-4981-81af-242cf9c",
+            "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
+            Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
           },
         }
       )
@@ -33,8 +33,8 @@ class UsersContainer extends React.Component {
         `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
         {
           headers: {
-            "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c6",
-            Authorization: "Bearer b35147cb-1f7d-4981-81af-242cf9c",
+            "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
+            Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
           },
         }
       )

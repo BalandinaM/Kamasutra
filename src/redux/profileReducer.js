@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
   srcImg: 'https://img.freepik.com/free-photo/the-adorable-illustration-of-kittens-playing-in-the-forest-generative-ai_260559-483.jpg?size=338& ext=jpg&ga=GA1.1.2116175301.1714003200&semt=ais',
@@ -11,6 +12,8 @@ let initialState = {
   ],
 
   newPostText: 'it-kamasutra',
+
+  profile: null,
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -34,6 +37,13 @@ const profileReduser = (state = initialState, action) => {
         newPostText: action.newText,
       })
 
+    case SET_USER_PROFILE: {
+      return Object.assign({}, state, {
+        profile: action.profile,
+      })
+    }
+
+
     default:
       return state;
   }
@@ -45,6 +55,8 @@ export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text
 });
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export default profileReduser;
 

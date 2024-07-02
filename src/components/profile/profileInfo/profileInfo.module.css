@@ -1,12 +1,52 @@
 .profileInfo {
   padding: 15px;
+  margin-top: 50px;
 }
 
 .img {
   width: 100%;
 }
 
+
 .user {
-  /*padding: 15px;*/
+  padding: 30px;
   margin-bottom: 20px;
+}
+
+
+
+.wrap_user {
+  display: flex;
+  width: 50vw;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 50px;
+  /* justify-content: space-between; */
+}
+
+.user_photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.user_name {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.wrap_job {
+  font-size: 20px;
+}
+
+.contacts_title {
+  font-size: 30px;
+}
+
+.contacts_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

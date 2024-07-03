@@ -44,9 +44,3 @@
   font-size: 30px;
 }
 
-.contacts_list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}

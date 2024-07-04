@@ -30,7 +30,7 @@ class ProfileContainer extends React.Component {
         {
           headers: {
             "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
-            Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
+            Authorization: "Bearer cc8ad68d-99fe-4f27-b6af-cd1b10f297cf",
           },
         }
       )

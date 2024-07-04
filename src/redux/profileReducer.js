@@ -59,29 +59,3 @@ export const updateNewPostTextActionCreator = (text) => ({
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export default profileReduser;
-
-
-//////////////////////////////////старый код/////////////////////
-// const profileReduser = (state = initialState, action) => {
-//   //debugger;
-//   switch(action.type) {
-//     case ADD_POST:
-//       let newPost = {
-//         id: 4,
-//         message: state.newPostText,
-//         like: 0,
-//       };
-//       state.postsData.push(newPost);
-//       state.newPostText = '';
-//       return state;
-
-//     case UPDATE_NEW_POST_TEXT:
-//       //debugger;
-//       state.newPostText = action.newText;
-//       return state;
-
-//     default:
-//       return state;
-//   }
-// }
-//////////////////////////////////////////////////////////////////////

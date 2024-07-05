@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component {
 
     let userId = this.props.params.userId;
     if (!userId) {
-      userId = 2;
+      userId = 31298;
     }
     axios
       .get(

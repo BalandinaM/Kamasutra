@@ -2,6 +2,7 @@ import React from "react";
 import style from './users.module.css';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/image/avatar.png';
+import axios from "axios";
 
 let Users = (props) => {
 
@@ -34,8 +35,46 @@ let Users = (props) => {
                 <img className={style.img} src={u.photos.small != null ? u.photos.small : avatar } alt={`Фото ${u.name} ${u.surname}`} width='40' height='40'/>
               </NavLink>
               {u.followed
-                ? <button onClick={() => props.unfollow(u.id)} className={style.item_button} >Unfollow</button>
-                : <button onClick={() => props.follow(u.id)} className={style.item_button} >Follow</button> }
+                ? <button onClick={() =>
+                  { axios.delete(
+                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                      { withCredentials: true,
+                        headers: {
+                          "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
+                          Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
+                        },
+                      },
+                    )
+                    .then((response) => {
+                      if (response.data.resultCode === 0) {
+                        props.unfollow(u.id)
+                      }
+                    });
+
+                    }} className={style.item_button}
+
+                  >Unfollow</button>
+
+                : <button onClick={() =>
+                  { axios.post(
+                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},
+                      {
+                        headers: {
+                          "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
+                          Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
+                        },
+                        withCredentials: true,
+                      },
+                    )
+                    .then((response) => {
+                      if (response.data.resultCode === 0) {
+                        props.follow(u.id)
+                      }
+                    });
+
+                    }} className={style.item_button}
+
+                  >Follow</button> }
             </div>
             <div className={style.rightBlock}>
               <div className={style.info}>

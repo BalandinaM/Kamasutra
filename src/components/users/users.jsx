@@ -2,7 +2,8 @@ import React from "react";
 import style from './users.module.css';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/image/avatar.png';
-import axios from "axios";
+// import axios from "axios";
+import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
 
@@ -36,16 +37,9 @@ let Users = (props) => {
               </NavLink>
               {u.followed
                 ? <button onClick={() =>
-                  { axios.delete(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                      { withCredentials: true,
-                        headers: {
-                          "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
-                          Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
-                        },
-                      },
-                    )
+                  { usersAPI.unFollow(u.id)
                     .then((response) => {
+                      debugger;
                       if (response.data.resultCode === 0) {
                         props.unfollow(u.id)
                       }
@@ -56,23 +50,15 @@ let Users = (props) => {
                   >Unfollow</button>
 
                 : <button onClick={() =>
-                  { axios.post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},
-                      {
-                        headers: {
-                          "API-KEY": "8312cd1f-3942-4c8e-84a0-fb6a8c65bd02",
-                          Authorization: "Bearer 7ccffc5e-7ccd-4422-b6c6-35f5402",
-                        },
-                        withCredentials: true,
-                      },
-                    )
+                  { usersAPI.follow(u.id)
                     .then((response) => {
+                      debugger;
                       if (response.data.resultCode === 0) {
                         props.follow(u.id)
                       }
                     });
 
-                    }} className={style.item_button}
+                  }} className={style.item_button}
 
                   >Follow</button> }
             </div>

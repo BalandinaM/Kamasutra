@@ -36,26 +36,30 @@ let Users = (props) => {
                 <img className={style.img} src={u.photos.small != null ? u.photos.small : avatar } alt={`Фото ${u.name} ${u.surname}`} width='40' height='40'/>
               </NavLink>
               {u.followed
-                ? <button onClick={() =>
-                  { usersAPI.unFollow(u.id)
+                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>//eсли массив содержит id
+                  { props.toggleFollowingProgress(true, u.id);//то отправляем в массив (через AC id пользователя и true что процесс идет)
+                    usersAPI.unFollow(u.id)
                     .then((response) => {
-                      debugger;
+                      //debugger;
                       if (response.data.resultCode === 0) {
                         props.unfollow(u.id)
                       }
+                      props.toggleFollowingProgress(false, u.id); // после всех дел, удаляем процесс и id пользователся из массива
                     });
 
                     }} className={style.item_button}
 
                   >Unfollow</button>
 
-                : <button onClick={() =>
-                  { usersAPI.follow(u.id)
+                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>
+                  { props.toggleFollowingProgress(true, u.id);
+                    usersAPI.follow(u.id)
                     .then((response) => {
-                      debugger;
+                      //debugger;
                       if (response.data.resultCode === 0) {
                         props.follow(u.id)
                       }
+                      props.toggleFollowingProgress(false, u.id);
                     });
 
                   }} className={style.item_button}

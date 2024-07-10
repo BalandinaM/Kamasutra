@@ -3,7 +3,7 @@ import style from './users.module.css';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/image/avatar.png';
 // import axios from "axios";
-import { usersAPI } from "../../api/api";
+//import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
 
@@ -24,8 +24,13 @@ let Users = (props) => {
         <h2 className={style.title}>Добавь еще друзей!</h2>
         <div className={style.wrapPages}>
           {pages.map(p => {
-            return <span key={pages.indexOf(p)} className={props.currentPage === p ? style.currentPage : style.page}
-            onClick={(e) => {props.onPageChanged(p)}}>{p}</span>
+            return <span
+              key={ pages.indexOf(p) }
+              className = { props.currentPage === p ?
+              style.currentPage :
+              style.page}
+              onClick={(e) => {props.onPageChanged(p)}}>{p}
+            </span>
           })}
         </div>
         <ul className={style.list}>
@@ -37,30 +42,32 @@ let Users = (props) => {
               </NavLink>
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>//eсли массив содержит id
-                  { props.toggleFollowingProgress(true, u.id);//то отправляем в массив (через AC id пользователя и true что процесс идет)
-                    usersAPI.unFollow(u.id)
-                    .then((response) => {
-                      //debugger;
-                      if (response.data.resultCode === 0) {
-                        props.unfollow(u.id)
-                      }
-                      props.toggleFollowingProgress(false, u.id); // после всех дел, удаляем процесс и id пользователся из массива
-                    });
+                  { props.unfollow(u.id);
+                    // props.toggleFollowingProgress(true, u.id);//то отправляем в массив (через AC id пользователя и true что процесс идет)
+                    // usersAPI.unFollow(u.id)
+                    // .then((response) => {
+                    //   //debugger;
+                    //   if (response.data.resultCode === 0) {
+                    //     props.unfollow(u.id)
+                    //   }
+                    //   props.toggleFollowingProgress(false, u.id); // после всех дел, удаляем процесс и id пользователся из массива
+                    // });
 
                     }} className={style.item_button}
 
                   >Unfollow</button>
 
                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>
-                  { props.toggleFollowingProgress(true, u.id);
-                    usersAPI.follow(u.id)
-                    .then((response) => {
-                      //debugger;
-                      if (response.data.resultCode === 0) {
-                        props.follow(u.id)
-                      }
-                      props.toggleFollowingProgress(false, u.id);
-                    });
+                  { props.follow(u.id);
+                    // props.toggleFollowingProgress(true, u.id);
+                    // usersAPI.follow(u.id)
+                    // .then((response) => {
+                    //   //debugger;
+                    //   if (response.data.resultCode === 0) {
+                    //     props.follow(u.id)
+                    //   }
+                    //   props.toggleFollowingProgress(false, u.id);
+                    // });
 
                   }} className={style.item_button}
 

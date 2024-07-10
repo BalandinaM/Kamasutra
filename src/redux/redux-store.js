@@ -13,7 +13,7 @@ const store = configureStore({
     usersPage: usersReducer,
     auth: authReduser,
   }
-})
+});
 
 window.store = store;
 

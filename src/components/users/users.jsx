@@ -43,32 +43,12 @@ let Users = (props) => {
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>//eсли массив содержит id
                   { props.unfollow(u.id);
-                    // props.toggleFollowingProgress(true, u.id);//то отправляем в массив (через AC id пользователя и true что процесс идет)
-                    // usersAPI.unFollow(u.id)
-                    // .then((response) => {
-                    //   //debugger;
-                    //   if (response.data.resultCode === 0) {
-                    //     props.unfollow(u.id)
-                    //   }
-                    //   props.toggleFollowingProgress(false, u.id); // после всех дел, удаляем процесс и id пользователся из массива
-                    // });
-
                     }} className={style.item_button}
 
                   >Unfollow</button>
 
                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>
                   { props.follow(u.id);
-                    // props.toggleFollowingProgress(true, u.id);
-                    // usersAPI.follow(u.id)
-                    // .then((response) => {
-                    //   //debugger;
-                    //   if (response.data.resultCode === 0) {
-                    //     props.follow(u.id)
-                    //   }
-                    //   props.toggleFollowingProgress(false, u.id);
-                    // });
-
                   }} className={style.item_button}
 
                   >Follow</button> }

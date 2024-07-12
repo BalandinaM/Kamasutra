@@ -3,6 +3,8 @@ import Users from "./users";
 import { connect } from 'react-redux';
 import { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers } from "../../redux/usersReducer";
 import Preloader from "../common/preloader/preloader";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -25,7 +27,6 @@ class UsersContainer extends React.Component {
           usersData={this.props.usersData}
           unfollow={this.props.unfollow}
           follow={this.props.follow}
-          // toggleFollowingProgress={this.props.toggleFollowingProgress}//передаем в компоненту АС
           followingInProgress={this.props.followingInProgress}//передаем массив из initialState
         />
       </>
@@ -44,6 +45,11 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,
-  { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers}
+// export default connect(mapStateToProps,
+//   { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers}
+// )(UsersContainer);
+
+export default compose(
+  connect(mapStateToProps,{ follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers}),
+  withAuthRedirect
 )(UsersContainer);

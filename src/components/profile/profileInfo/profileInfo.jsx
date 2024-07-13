@@ -2,6 +2,8 @@ import React from 'react';
 import p from './profileInfo.module.css';
 import Preloader from '../../common/preloader/preloader';
 import ContactsListContainer from './contactsList/contactsListContainer';
+import ProfileStatus from './profileStatus/profileStatus';
+
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -19,6 +21,7 @@ const ProfileInfo = (props) => {
           <img className={p.user_photo} src={props.profile.photos.large} alt=''/>
           <p className={p.user_name}>{props.profile.fullName}</p>
         </div>
+        <ProfileStatus status={'Hello, World!'}/>
         <div className={p.wrap_job}>
           <p>Рассматриваю предложения о работе. {props.profile.lookingForAJob}</p>
           <p>{props.profile.lookingForAJobDescription}</p>

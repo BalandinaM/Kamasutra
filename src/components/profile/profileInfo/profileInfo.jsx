@@ -10,6 +10,11 @@ const ProfileInfo = (props) => {
     return <Preloader />
   }
 
+  // if (!props.status) {
+  //   alert('!!!!!!')
+  //   props.status = {props.status}
+  // }
+
   return (
     <section className={p.profileInfo}>
       <h2>Мой профиль</h2>
@@ -21,7 +26,9 @@ const ProfileInfo = (props) => {
           <img className={p.user_photo} src={props.profile.photos.large} alt=''/>
           <p className={p.user_name}>{props.profile.fullName}</p>
         </div>
-        <ProfileStatus status={'Hello, World!'}/>
+        <ProfileStatus status={(!props.status) ?
+    console.log('no status!') : props.status
+  }/>
         <div className={p.wrap_job}>
           <p>Рассматриваю предложения о работе. {props.profile.lookingForAJob}</p>
           <p>{props.profile.lookingForAJobDescription}</p>

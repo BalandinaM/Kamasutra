@@ -3,7 +3,7 @@ import s from './profileStatus.module.css';
 
 class ProfileStatus extends React.Component {
   state = {
-    editMode: false,
+    editMode: true,
   };
 
   activateEditMode = () => {

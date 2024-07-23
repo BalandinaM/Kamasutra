@@ -4,7 +4,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
-const UPDATE_NEW_USER_STATUS = 'UPDATE_NEW_USER_STATUS';
+//const UPDATE_NEW_USER_STATUS = 'UPDATE_NEW_USER_STATUS';
 
 let initialState = {
   srcImg: 'https://img.freepik.com/free-photo/the-adorable-illustration-of-kittens-playing-in-the-forest-generative-ai_260559-483.jpg?size=338& ext=jpg&ga=GA1.1.2116175301.1714003200&semt=ais',
@@ -50,13 +50,13 @@ const profileReduser = (state = initialState, action) => {
 
     case SET_USER_STATUS:
       return Object.assign({}, state, {
-        userStatus: action.status,
+        status: action.status,
       })
 
-    case UPDATE_NEW_USER_STATUS:
-      return Object.assign({}, state, {
-        userStatus: action.newUserStatus,
-      })
+    // case UPDATE_NEW_USER_STATUS:
+    //   return Object.assign({}, state, {
+    //     userStatus: action.newUserStatus,
+    //   })
 
     default:
       return state;
@@ -74,6 +74,8 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
+// export const updateNewUserStatus = (text) => ({type: UPDATE_NEW_USER_STATUS, text});
+
 export const getProfile = (userId) => {
   return (dispatch) => {
     profileAPI.getProfile(userId).then((data) => {
@@ -89,6 +91,16 @@ export const getUserStatus = (userId) => {
       dispatch(setUserStatus(data))
     });
   };
+};
+
+export const updateStatus = (status) => (dispatch) => {
+  //debugger;
+  profileAPI.updateUserStatus(status)
+  .then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(setUserStatus(status))
+    }
+  })
 };
 
 export default profileReduser;

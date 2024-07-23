@@ -28,7 +28,7 @@ const ProfileInfo = (props) => {
         </div>
         <ProfileStatus status={(!props.status) ?
     console.log('no status!') : props.status
-  }/>
+  } updateStatus={props.updateStatus}/>
         <div className={p.wrap_job}>
           <p>Рассматриваю предложения о работе. {props.profile.lookingForAJob}</p>
           <p>{props.profile.lookingForAJobDescription}</p>

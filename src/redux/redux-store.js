@@ -4,6 +4,8 @@ import dialogsReduser from './dialogsReducer';
 import navBarReducer from './navBarReducer';
 import usersReducer from './usersReducer';
 import authReduser from './authReducer';
+import { reducer as formReducer } from 'redux-form'
+
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,7 @@ const store = configureStore({
     navBar: navBarReducer,
     usersPage: usersReducer,
     auth: authReduser,
+    form: formReducer,
   }
 });
 

@@ -21,7 +21,6 @@ class ProfileStatus extends React.Component {
     this.setState({
       editMode: false,
     })
-    console.log(this.state.status);
     //debugger;
     this.props.updateStatus(this.state.status);
   }
@@ -46,13 +45,10 @@ class ProfileStatus extends React.Component {
         status: this.props.status
       })
     }
-
-    console.log('componentDidUpdate');
   }
 
 
   render() {
-    console.log('render');
     return (
       <div className={s.wrap}>
         {!this.state.editMode && (
@@ -75,14 +71,5 @@ class ProfileStatus extends React.Component {
     );
   }
 }
-
-// let mapStateToProps = (state) => ({
-//   status: state.profilePage.status,
-// })
-
-// export default compose(
-//   connect(mapStateToProps, { addPostActionCreator, updateNewPostTextActionCreator}),
-//   withAuthRedirect
-// )(ProfileStatus)
 
 export default ProfileStatus;

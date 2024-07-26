@@ -1,30 +1,22 @@
 import React from "react";
 import n from './newMessage.module.css';
+import { Field, reduxForm } from "redux-form";
 
 
 const NewMessage = (props) => {
 
-  let newMessageElement = React.createRef();
-
-  let sendMessage = () => {
-    let newMessage = newMessageElement.current.value;
-    props.sendMessage(newMessage);
-  }
-
-  let onMessageChange = () => {
-    let newMessage = newMessageElement.current.value;
-    props.onMessageChange(newMessage);
-  }
-
   return (
-    <div className={n.wrap}>
-      <textarea ref={newMessageElement}
-                onChange={onMessageChange}
-                value={props.plaseholder}
-                className={n.textarea} />
-      <button onClick={ sendMessage } className={n.button}>Send message</button>
-    </div>
+    <form onSubmit={props.handleSubmit} className={n.wrap}>
+      <Field component={"textarea"}
+             name={"messageNewText"}
+              placeholder={"New message"}
+              value={props.plaseholder}
+              className={n.textarea} />
+      <button className={n.button}>Send message</button>
+    </form>
   )
 }
 
-export default NewMessage;
+const NewMessageReduxForm = reduxForm({form: 'newMessage'})(NewMessage)
+
+export default NewMessageReduxForm;

@@ -2,12 +2,16 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
-import NewMessageContainer from './newMessage/newMessageContainer';
-//import { Navigate } from 'react-router-dom';
+import NewMessageReduxForm from './newMessage/newMessage';
 
 const Dialogs = (props) => {
   //debugger;
   let dialogsElements = props.dialogsPage.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
+
+  const addMessage = (value) => {
+    props.sendMessage(value.messageNewText);
+    console.log(value.messageNewText);
+  }
 
   return (
     <section className={d.dialogs}>
@@ -16,8 +20,7 @@ const Dialogs = (props) => {
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk postData = {props.dialogsPage.postData}/>
-      {/* <NewMessage dispatch = {props.dispatch} newMessageBody = {props.newMessageBody}/> */}
-      <NewMessageContainer />
+      <NewMessageReduxForm onSubmit={addMessage}/>
     </section>
   )
 }

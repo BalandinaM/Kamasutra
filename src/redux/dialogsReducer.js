@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 
 let initialState = {
   dialogsData: [
@@ -18,7 +17,6 @@ let initialState = {
     {id: 4, message: 'Please note that this API is marked unstable and may be subject to breaking changes without a major release.'},
   ],
 
-  newMessageBody: '',
 };
 
 const dialogsReduser = (state = initialState, action) => {
@@ -35,11 +33,6 @@ const dialogsReduser = (state = initialState, action) => {
         newMessageBody: '',
       })
 
-    case UPDATE_NEW_MESSAGE_BODY:
-      return Object.assign({}, state, {
-        newMessageBody: action.newMessage,
-      })
-
     default:
       return state;
   }
@@ -47,28 +40,4 @@ const dialogsReduser = (state = initialState, action) => {
 
 export const addMessageActionCreator = (text) => ({type: ADD_MESSAGE, newMessage: text,});
 
-export const updateNewMessageActionCreator = (text) => ({
-  type: UPDATE_NEW_MESSAGE_BODY,
-  newMessage: text,
-});
-
 export default dialogsReduser;
-
-// const dialogsReduser = (state = initialState, action) => {
-//   switch (action.type) {
-//     case ADD_MESSAGE:
-//       let newMessage = {
-//         id: 5,
-//         message: state.newMessageBody,
-//       };
-//       state.postData.push(newMessage);
-//       state.newMessageBody = '';
-//       return state;
-
-//     case UPDATE_NEW_MESSAGE_BODY:
-//       state.newMessageBody = action.newMessage;
-//       return state;
-//     default:
-//       return state;
-//   }
-// }

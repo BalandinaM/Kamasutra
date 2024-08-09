@@ -5,3 +5,11 @@
 div {
   margin-bottom: 30px;
 }
+
+.login_error {
+  padding: 20px;
+  align-content: center;
+  width: fit-content;
+  background-color: #D76F30;
+  color: #172D13;
+}

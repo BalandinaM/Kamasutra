@@ -2,11 +2,11 @@ import { addMessageActionCreator, updateNewMessageActionCreator } from "../../..
 import NewMessage from "./newMessage";
 import { connect } from "react-redux";
 
-let mapStateToProps = (state) => {
-  return {
-    plaseholder: state.dialogsPage.newMessageBody,
-  }
-}
+// let mapStateToProps = (state) => {
+//   return {
+//     plaseholder: state.dialogsPage.newMessageBody,
+//   }
+// }
 
 let mapDispatchToProps = (dispatch) => {
   return {
@@ -20,6 +20,8 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const NewMessageContainer = connect(mapStateToProps, mapDispatchToProps)(NewMessage);
+const NewMessageContainer = connect(
+  //mapStateToProps,
+  mapDispatchToProps)(NewMessage);
 
 export default NewMessageContainer;

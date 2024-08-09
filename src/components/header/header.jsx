@@ -7,15 +7,16 @@ const Header = (props) => {
   return (
     <header className={h.header}>
       <img src={image} alt="Картинка" />
+      {props.isAuth ? (
         <div className={h.wrapLogin}>
-          <div>
-            {
-              props.isAuth ?
-              <NavLink className={h.login_link}>{props.login}</NavLink> :
-              <NavLink to='./login' className={h.login_link}>Sign On</NavLink>
-            }
-          </div>
+          <NavLink className={h.login_link}>{props.login}</NavLink>
+          <button className={h.login_link} onClick={props.logout}>Log out</button>
         </div>
+      ) : (
+        <NavLink to="./login" className={h.login_link}>
+          Sign On
+        </NavLink>
+      )}
     </header>
   );
 };

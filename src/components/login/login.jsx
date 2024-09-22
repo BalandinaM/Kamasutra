@@ -52,6 +52,10 @@ const Login = (props) => {
     return <Navigate to="/profile" />
   }
 
+  if (props.isCaptcha) {
+    console.log("Captha")
+  }
+
   return (
     <section className={l.login_page}>
       <h2>Login</h2>
@@ -62,6 +66,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
+  isCaptcha: state.auth.isCaptcha,
 })
 
 export default connect(mapStateToProps, {login})(Login)

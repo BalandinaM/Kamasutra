@@ -3,6 +3,7 @@ import { authAPI, profileAPI } from "../api/api";
 import { setUserProfile } from '../redux/profileReducer';
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_CAPTCHA = 'SET_CAPTCHA';
 
 let initialState = {
   id: null,
@@ -10,23 +11,30 @@ let initialState = {
   login: null,
   isFetching: false,
   isAuth: false,
+  isCaptcha: false,
 };
 
 const authReduser = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SET_USER_DATA:
       return Object.assign({}, state, {
         //...action.data,
         //isAuth: true,
-        ...action.payload
-      })
+        ...action.payload,
+      });
+    case SET_CAPTCHA:
+      return Object.assign({}, state, {
+        isCaptcha: true,
+      });
 
     default:
       return state;
   }
-}
+};
 
 export const setUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, payload: { id, email, login, isAuth } });
+
+export const setCaptcha = () => ({type: SET_CAPTCHA})
 
 export const getMyProfile = () => {
   return (dispatch) => {
@@ -54,7 +62,16 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       dispatch(getMyProfile());
     } else {
       let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
-      dispatch(stopSubmit('login', {_error: message}))
+      dispatch(stopSubmit('login', {_error: message}));
+      if (message === "Incorrect anti-bot symbols") {
+        authAPI.getCaptcha()
+        .then((response) => {
+          if (response.data.url.length > 0) {
+            console.log(response.data.url);
+            dispatch(setCaptcha());
+          }
+        })
+      }
     }
   })
 };

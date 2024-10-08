@@ -2,7 +2,7 @@ import React from 'react';
 import p from './profileInfo.module.css';
 import Preloader from '../../common/preloader/preloader';
 import ContactsListContainer from './contactsList/contactsListContainer';
-import ProfileStatus from './profileStatus/profileStatus';
+import ProfileStatusWithHooks from './profileStatus/profileStatusWithHooks';
 
 
 const ProfileInfo = (props) => {
@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
           <img className={p.user_photo} src={props.profile.photos.large} alt=''/>
           <p className={p.user_name}>{props.profile.fullName}</p>
         </div>
-        <ProfileStatus status={(!props.status) ?
+        <ProfileStatusWithHooks status={(!props.status) ?
     console.log('no status!') : props.status
   } updateStatus={props.updateStatus}/>
         <div className={p.wrap_job}>

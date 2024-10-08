@@ -1,9 +1,5 @@
 import React from 'react';
 import s from './profileStatus.module.css';
-// import { compose } from 'redux';
-// import { withAuthRedirect } from '../../../../hoc/withAuthRedirect';
-// import { connect } from 'react-redux';
-// import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profileReducer';
 
 class ProfileStatus extends React.Component {
   state = {
@@ -21,16 +17,8 @@ class ProfileStatus extends React.Component {
     this.setState({
       editMode: false,
     })
-    //debugger;
     this.props.updateStatus(this.state.status);
   }
-
-  // newStatus = React.createRef();
-
-  // addStatus = () => {
-  //   let text = this.newStatus.current.value;
-  //   addPostActionCreator(text);
-  // }
 
   onStatusChange = (e) => {
     this.setState({
@@ -39,7 +27,6 @@ class ProfileStatus extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //debugger;
     if (prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status

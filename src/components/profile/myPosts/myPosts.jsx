@@ -1,9 +1,18 @@
 import React from 'react';
-import p from './myPosts.module.css';
+import styled from "styled-components";
 import Post from './post/post';
 import NewPostReduxForm from './newPost/newPost';
 
-const MyPosts = (props) => {
+const Section = styled.section`
+  padding: 15px;
+`;
+
+const Ul = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const MyPosts = React.memo((props) => {
   let store = props.profilePage;
 
   let postElems = store.postsData.map(p => <Post key={p.id} message={p.message} like={p.like} src={store.srcImg}/>)
@@ -13,14 +22,14 @@ const MyPosts = (props) => {
   }
 
   return (
-    <section className={p.wrapPosts}>
+    <Section>
       <h3>My posts</h3>
       <NewPostReduxForm onSubmit={addPost}/>
-      <ul className={p.listPosts}>
+      <Ul>
         { postElems }
-      </ul>
-    </section>
+      </Ul>
+    </Section>
   )
-}
+});
 
 export default MyPosts;

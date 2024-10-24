@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import Post from './post/post';
-import NewPostReduxForm from './newPost/newPost';
+//import NewPostReduxForm from './newPost/newPost';
 
 const Section = styled.section`
   padding: 15px;
@@ -24,7 +24,7 @@ const MyPosts = React.memo((props) => {
   return (
     <Section>
       <h3>My posts</h3>
-      <NewPostReduxForm onSubmit={addPost}/>
+      {/* <NewPostReduxForm onSubmit={addPost}/> */}
       <Ul>
         { postElems }
       </Ul>

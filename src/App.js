@@ -9,7 +9,8 @@ import DialogsContainer from './components/dialogs/dialogsContainer';
 import UsersContainer from './components/users/usersContainer';
 import ProfileContainer from './components/profile/profileContainer';
 import HeaderContainer from './components/header/headerContainer';
-import Login from './components/login/login';
+//import Login from './components/login/login';
+import LoginForm from './components/login/loginFormik';
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { withRouter } from './hoc/withRouter';
@@ -37,7 +38,8 @@ class App extends Component {
                 <Route path=":userId" element={<ProfileContainer />}></Route>
               </Route>
               <Route path="/dialogs" element={<DialogsContainer />} />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
+              <Route path="/login" element={<LoginForm />} />
               <Route path="/users" element={<UsersContainer />} />
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />

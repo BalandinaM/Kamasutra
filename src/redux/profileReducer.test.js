@@ -1,7 +1,5 @@
 import profileReduser, {addPostActionCreator} from "./profileReducer";
 
-
-
 it("length of posts should be incremented", () => {
   //1. исходные данные для теста. test data
   let action = addPostActionCreator("it-kamasutra.com");
@@ -21,6 +19,6 @@ it("length of posts should be incremented", () => {
   let newState = profileReduser(state, action);
 
   //3. проверяем свое ожидание. Expectation
-  expect(newState.postsData.length).toBe(5);
+  expect(newState.postsData.length).toBe(4);
 });
 

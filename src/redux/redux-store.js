@@ -5,7 +5,7 @@ import navBarReducer from './navBarReducer';
 import usersReducer from './usersReducer';
 import authReduser from './authReducer';
 import appReducer from './appReducer';
-import { reducer as formReducer } from 'redux-form'
+//import { reducer as formReducer } from 'redux-form'
 
 
 const store = configureStore({
@@ -15,7 +15,7 @@ const store = configureStore({
     navBar: navBarReducer,
     usersPage: usersReducer,
     auth: authReduser,
-    form: formReducer,
+    //form: formReducer,
     app: appReducer,
   }
 });

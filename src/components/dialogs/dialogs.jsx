@@ -2,7 +2,7 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
-import NewMessageReduxForm from './newMessage/newMessage';
+//import NewMessageReduxForm from './newMessage/newMessage';
 
 const Dialogs = (props) => {
   //debugger;
@@ -20,7 +20,7 @@ const Dialogs = (props) => {
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk postData = {props.dialogsPage.postData}/>
-      <NewMessageReduxForm onSubmit={addMessage}/>
+      {/* <NewMessageReduxForm onSubmit={addMessage}/> */}
     </section>
   )
 }

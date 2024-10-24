@@ -1,4 +1,4 @@
-import { stopSubmit } from "redux-form";
+//import { stopSubmit } from "redux-form";
 import { authAPI, profileAPI } from "../api/api";
 import { setUserProfile } from '../redux/profileReducer';
 
@@ -55,26 +55,26 @@ export const getMyProfile = () => {
   }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe)
-  .then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(getMyProfile());
-    } else {
-      let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
-      dispatch(stopSubmit('login', {_error: message}));
-      if (message === "Incorrect anti-bot symbols") {
-        authAPI.getCaptcha()
-        .then((response) => {
-          if (response.data.url.length > 0) {
-            console.log(response.data.url);
-            dispatch(setCaptcha());
-          }
-        })
-      }
-    }
-  })
-};
+// export const login = (email, password, rememberMe) => (dispatch) => {
+//   authAPI.login(email, password, rememberMe)
+//   .then((response) => {
+//     if (response.data.resultCode === 0) {
+//       dispatch(getMyProfile());
+//     } else {
+//       let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+//       dispatch(stopSubmit('login', {_error: message}));
+//       if (message === "Incorrect anti-bot symbols") {
+//         authAPI.getCaptcha()
+//         .then((response) => {
+//           if (response.data.url.length > 0) {
+//             console.log(response.data.url);
+//             dispatch(setCaptcha());
+//           }
+//         })
+//       }
+//     }
+//   })
+// };
 
 export const logout = () => (dispatch) => {
   authAPI.logout()

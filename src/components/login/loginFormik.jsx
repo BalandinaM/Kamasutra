@@ -1,6 +1,9 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
+import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+import { login } from "../../redux/authReducer";
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -30,40 +33,83 @@ const Checkbox = ({ children, ...props }) => {
   );
 };
 
+
+
 const LoginForm = (props) => {
   return (
     <Formik
-      initialValues={{ email: "", password: "", remember: false }}
+      initialValues={{ email: "", password: "", rememberMe: false }}
       validationSchema={Yup.object({
         password: Yup.string()
           .max(15, "Must be 15 characters or less")
           .required("Required"),
-        email: Yup.string()
-          .email("Invalid email address")
-          .required("Required"),
-        remember: Yup.boolean()
-          .required('Required')//для примера, для этого чекбокса эта проверка не нужна
-          .oneOf([true], 'You must accept the terms and conditions.'),
+        email: Yup.string().email("Invalid email address").required("Required"),
+        rememberMe: Yup.boolean(),
+        //.required('Required')//для примера, для этого чекбокса эта проверка не нужна
+        //.oneOf([true], 'You must accept the terms and conditions.'),
+        captcha: Yup.string(),
+        //.required("Required"),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={props.onSubmit}
     >
       <Form>
         <TextInput label="email" name="email" type="email" placeholder="name@email.ru"/>
-        <TextInput label="password" name="password" type="password"/>
-        <Checkbox name="remember">Запомнить</Checkbox>
+        <TextInput label="password" name="password" type="password" />
+        <Checkbox name="rememberMe">Запомнить</Checkbox>
+        <div>
+          <h3>Подтвердите что вы не робот</h3>
+          <p>Введите цифры указанные на картинке</p>
+          <img src={props.urlCaptcha} alt="Captcha" />
+          <TextInput label="captcha" name="captcha" type="text" defaultValue=""/>
+        </div>
         <button type="submit">Login</button>
       </Form>
     </Formik>
   );
 };
 
+const Login = (props) => {
 
-export default LoginForm;
+  const submit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 400);
+    props.login(values.email, values.password, values.rememberMe, values.captcha);
+    setSubmitting(false);
+  }
+
+  if (props.isAuth) {
+    return <Navigate to="/profile" />;
+  }
+
+  if (props.isCaptcha) {
+    console.log("Captha");
+    // return (
+    //   <div>
+    //     <h3>Подтвердите что вы не робот</h3>
+    //     <p>Введите цифры указанные на картинке</p>
+    //     <img src={props.urlCaptcha} alt="Captcha" />
+    //     <input type="text" />
+    //   </div>
+    // )
+  }
+
+  return (
+    <section>
+      <h2>Login</h2>
+      <LoginForm onSubmit={ submit } isCaptcha={ props.isCaptcha } urlCaptcha = { props.urlCaptcha } />
+    </section>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  isCaptcha: state.auth.isCaptcha,
+  urlCaptcha: state.auth.urlCaptcha,
+});
+
+export default connect(mapStateToProps, { login })(Login);
 
 // const validate = values => {  перенесли в константу formik в validationSchema
 //   const errors = {};

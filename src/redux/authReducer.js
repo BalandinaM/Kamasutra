@@ -12,6 +12,7 @@ let initialState = {
   isFetching: false,
   isAuth: false,
   isCaptcha: false,
+  urlCaptcha: '',
 };
 
 const authReduser = (state = initialState, action) => {
@@ -25,6 +26,7 @@ const authReduser = (state = initialState, action) => {
     case SET_CAPTCHA:
       return Object.assign({}, state, {
         isCaptcha: true,
+        urlCaptcha: action.url,
       });
 
     default:
@@ -34,7 +36,7 @@ const authReduser = (state = initialState, action) => {
 
 export const setUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, payload: { id, email, login, isAuth } });
 
-export const setCaptcha = () => ({type: SET_CAPTCHA})
+export const setCaptcha = (url) => ({type: SET_CAPTCHA, url})
 
 export const getMyProfile = () => {
   return (dispatch) => {
@@ -55,26 +57,30 @@ export const getMyProfile = () => {
   }
 }
 
-// export const login = (email, password, rememberMe) => (dispatch) => {
-//   authAPI.login(email, password, rememberMe)
-//   .then((response) => {
-//     if (response.data.resultCode === 0) {
-//       dispatch(getMyProfile());
-//     } else {
-//       let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
-//       dispatch(stopSubmit('login', {_error: message}));
-//       if (message === "Incorrect anti-bot symbols") {
-//         authAPI.getCaptcha()
-//         .then((response) => {
-//           if (response.data.url.length > 0) {
-//             console.log(response.data.url);
-//             dispatch(setCaptcha());
-//           }
-//         })
-//       }
-//     }
-//   })
-// };
+export const login = (email, password, rememberMe, captcha) => (dispatch) => {
+  authAPI.login(email, password, rememberMe, captcha)
+  .then((response) => {
+    console.log(response)
+    if (response.data.resultCode === 0) {
+      dispatch(getMyProfile());
+    } else {
+      let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+      console.log(message);
+      //dispatch(stopSubmit('login', {_error: message}));
+      if (message === "Incorrect anti-bot symbols") {
+        //console.log('captcha')
+        authAPI.getCaptcha()
+        .then((response) => {
+          if (response.data.url.length > 0) {
+            console.log(response.data.url);
+            dispatch(setCaptcha(response.data.url));
+          }
+        })
+      }
+    }
+  })
+};
+
 
 export const logout = () => (dispatch) => {
   authAPI.logout()

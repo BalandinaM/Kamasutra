@@ -1,3 +1,5 @@
+//Реализация на Redax-Form, оставить на память)
+
 // import React from "react";
 // import l from "./login.module.css";
 // import { Field, reduxForm } from "redux-form";

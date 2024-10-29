@@ -3,14 +3,16 @@ import { profileAPI } from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const DELETE_POST = 'DELETE_POST';
+const ADD_LIKE = 'ADD_LIKE';
 
 let initialState = {
   srcImg: 'https://img.freepik.com/free-photo/the-adorable-illustration-of-kittens-playing-in-the-forest-generative-ai_260559-483.jpg?size=338& ext=jpg&ga=GA1.1.2116175301.1714003200&semt=ais',
 
   postsData: [
-    {id: 1, message: 'Hi, how are you?', like: '78'},
-    {id: 2, message: 'It is my second post!', like: '1'},
-    {id: 3, message: 'It is my first post! Hello, world! Hello, React!', like: '100'},
+    {id: 1, message: 'Hi, how are you?', like: 78 },
+    {id: 2, message: 'It is my second post!', like: 1 },
+    {id: 3, message: 'It is my first post! Hello, world! Hello, React!', like: 1 },
   ],
 
   profile: null,
@@ -42,6 +44,18 @@ const profileReduser = (state = initialState, action) => {
         status: action.status,
       })
 
+    case DELETE_POST:
+      return {...state, postsData: state.postsData.filter(p => p.id !== action.postId)}
+
+    case ADD_LIKE:
+      return {...state,
+        //...state.postsData[0].like = 10
+        //...state.postsData.forEach((post) => post.id === action.postId ? {...state.postsData.post, like: 100500} : post)
+        ...state.postsData.forEach((post) => post.id === action.postId ?
+        {...state.postsData[state.postsData.indexOf(post)].like = 100500} :
+        post)
+    }
+
     default:
       return state;
   }
@@ -49,9 +63,14 @@ const profileReduser = (state = initialState, action) => {
 
 export const addPostActionCreator = (text) => ({type: ADD_POST, newText: text});
 
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
+
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
+
+export const addLike = (postId) => ({type: ADD_LIKE, postId});
+
 
 export const getProfile = (userId) => {
   return (dispatch) => {

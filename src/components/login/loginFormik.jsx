@@ -4,19 +4,22 @@ import * as Yup from 'yup';
 import { login } from "../../redux/authReducer";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+//import styled from "styled-components";
+import TextInput from "./textInput";
 
-const TextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <div>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </div>
-  );
-};
+
+// const TextInput = ({ label, ...props }) => {
+//   const [field, meta] = useField(props);
+//   return (
+//     <div>
+//       <label htmlFor={props.id || props.name}>{label}</label>
+//       <input className="text-input" {...field} {...props} />
+//       {meta.touched && meta.error ? (
+//         <div className="error">{meta.error}</div>
+//       ) : null}
+//     </div>
+//   );
+// };
 
 const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: 'checkbox' });

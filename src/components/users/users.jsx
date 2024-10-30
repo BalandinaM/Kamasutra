@@ -2,6 +2,7 @@ import React from "react";
 import style from './users.module.css';
 import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/image/avatar.png';
+//import { unfollow } from "../../redux/usersReducer";
 // import axios from "axios";
 //import { usersAPI } from "../../api/api";
 
@@ -43,12 +44,14 @@ let Users = (props) => {
               {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>//eсли массив содержит id
                   { props.unfollow(u.id);
+                    console.log("follow")
                     }} className={style.item_button}
 
                   >Unfollow</button>
 
                 : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>
                   { props.follow(u.id);
+                    console.log('unfollow')
                   }} className={style.item_button}
 
                   >Follow</button> }

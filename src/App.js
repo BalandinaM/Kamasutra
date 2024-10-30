@@ -21,6 +21,8 @@ class App extends Component {
     this.props.initializeApp();
   }
 
+
+
   render() {
     // if (!this.props.initialized) {
     //   return <Preloader/>

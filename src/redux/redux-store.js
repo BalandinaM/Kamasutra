@@ -15,7 +15,6 @@ const store = configureStore({
     navBar: navBarReducer,
     usersPage: usersReducer,
     auth: authReduser,
-    //form: formReducer,
     app: appReducer,
   }
 });

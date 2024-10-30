@@ -49,9 +49,7 @@ const profileReduser = (state = initialState, action) => {
 
     case ADD_LIKE:
       return {...state,
-        //...state.postsData[0].like = 10
-        //...state.postsData.forEach((post) => post.id === action.postId ? {...state.postsData.post, like: 100500} : post)
-        ...state.postsData.forEach((post) => post.id === action.postId ?
+        ...state.postsData.forEach(post => post.id === action.postId ?
         {...state.postsData[state.postsData.indexOf(post)].like = 100500} :
         post)
     }

@@ -39,21 +39,24 @@ let Users = (props) => {
             <li className={style.item} key={u.id}>
             <div className={style.leftBlock}>
               <NavLink to={'/profile/'+ u.id}>
-                <img className={style.img} src={u.photos.small != null ? u.photos.small : avatar } alt={`Фото ${u.name} ${u.surname}`} width='40' height='40'/>
+                <img
+                  className={style.img}
+                  src={u.photos.small != null ? u.photos.small : avatar }
+                  alt={`Фото ${u.name} ${u.surname}`}
+                  width='40'
+                  height='40'/>
               </NavLink>
               {u.followed
-                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>//eсли массив содержит id
-                  { props.unfollow(u.id);
-                    console.log("follow")
-                    }} className={style.item_button}
-
+                ? <button
+                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    onClick={() => { props.unfollow(u.id);}}
+                    className={style.item_button}
                   >Unfollow</button>
 
-                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() =>
-                  { props.follow(u.id);
-                    console.log('unfollow')
-                  }} className={style.item_button}
-
+                : <button
+                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    onClick={() => { props.follow(u.id) }}
+                    className={style.item_button}
                   >Follow</button> }
             </div>
             <div className={style.rightBlock}>

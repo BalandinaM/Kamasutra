@@ -76,6 +76,10 @@
   border-radius: 5px;
 }
 
+.item_button:disabled {
+  background-color: yellow;
+}
+
 .rightBlock {
   display: grid;
   grid-template-columns: 6fr 1fr;

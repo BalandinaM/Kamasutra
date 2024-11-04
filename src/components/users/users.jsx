@@ -1,80 +1,58 @@
 import React from "react";
-import style from './users.module.css';
-import { NavLink } from 'react-router-dom';
-import avatar from '../../assets/image/avatar.png';
-//import { unfollow } from "../../redux/usersReducer";
-// import axios from "axios";
-//import { usersAPI } from "../../api/api";
+import UserItem from "./userItem";
+import Paginator from "../common/paginator/paginator";
+import styled from "styled-components";
 
-let Users = (props) => {
+const Section = styled.section`
+  padding: 25px;
+`;
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+const Title = styled.h2`
+  font-size: 20px;
+`;
 
-    let pages = [];
+const Ul = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 30px;
+`;
 
-    for (let i = 1; i <= pagesCount; i++) {
-      if (i < 10) {
-        pages.push(i);
-      } else {
-        break;
-      }
-    }
+const Button = styled.button`
+  margin: 0 auto;
+  display: block;
+  box-sizing: border-box;
+  padding: 8px 20px;
+  background-color: #468f56;
+  color:#172D13;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+`;
 
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, usersData, ...props}) => {
     return (
-      <section className={style.users}>
-        <h2 className={style.title}>Добавь еще друзей!</h2>
-        <div className={style.wrapPages}>
-          {pages.map(p => {
-            return <span
-              key={ pages.indexOf(p) }
-              className = { props.currentPage === p ?
-              style.currentPage :
-              style.page}
-              onClick={(e) => {props.onPageChanged(p)}}>{p}
-            </span>
-          })}
-        </div>
-        <ul className={style.list}>
-          { props.usersData.map(u =>
-            <li className={style.item} key={u.id}>
-            <div className={style.leftBlock}>
-              <NavLink to={'/profile/'+ u.id}>
-                <img
-                  className={style.img}
-                  src={u.photos.small != null ? u.photos.small : avatar }
-                  alt={`Фото ${u.name} ${u.surname}`}
-                  width='40'
-                  height='40'/>
-              </NavLink>
-              {u.followed
-                ? <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
-                    onClick={() => { props.unfollow(u.id);}}
-                    className={style.item_button}
-                  >Unfollow</button>
+      <Section>
+        <Title>Добавь еще друзей!</Title>
 
-                : <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
-                    onClick={() => { props.follow(u.id) }}
-                    className={style.item_button}
-                  >Follow</button> }
-            </div>
-            <div className={style.rightBlock}>
-              <div className={style.info}>
-                <p className={style.name}>{u.name}&#32;<span>{u.surname != null ? u.fullName.surname : "Unknown"}</span></p>
-                <p className={style.title}>{u.status}</p>
-              </div>
-              <div className={style.location}>
-                <p>{"u.location.country,"}</p>
-                <p>{"u.location.city"}</p>
-              </div>
-            </div>
-        </li>
-        )}
-        </ul>
-        <button className={style.button}>Показать больше возможных друзей</button>
-      </section>
+        <Paginator currentPage = {currentPage} totalUsersCount ={totalUsersCount} pageSize = {pageSize} onPageChanged = {onPageChanged} />
+
+        <Ul>
+          { usersData.map(u =>
+              <UserItem user = {u} followingInProgress = {props.followingInProgress} key = {u.id} unfollow = {props.unfollow} follow = {props.follow}
+              />
+            )
+          }
+        </Ul>
+
+        <Button>Показать больше возможных друзей</Button>
+
+      </Section>
     )
   }
 
 export default Users;
+
+
+// currentPage = {currentPage} здесь обращаемся на прямую т.к. напрямую объявили в приходящих пропсах
+// follow = {props.follow} тут и в аналогичных местах обращаемся через props т.к. напрямую не указывали, оно берется из "...props"

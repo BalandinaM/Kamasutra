@@ -3,6 +3,44 @@ import { NavLink } from 'react-router-dom';
 import avatar from '../../assets/image/avatar.png';
 import styled from "styled-components";
 
+const UserItem = ({user, followingInProgress, unfollow, follow }) => {
+
+    return (
+        <Item key={user.id}>
+            <LeftBlock>
+              <NavLink to={'/profile/'+ user.id}>
+                <UserPhoto
+                  src={user.photos.small != null ? user.photos.small : avatar }
+                  alt={`Фото ${user.name} ${user.surname}`}
+                  width='40'
+                  height='40'/>
+              </NavLink>
+              {user.followed
+                ? <UserButton
+                    disabled={followingInProgress.some(id => id === user.id)}
+                    onClick={() => { unfollow(user.id)}}
+                  >Unfollow</UserButton>
+
+                : <UserButton
+                    disabled={followingInProgress.some(id => id === user.id)}
+                    onClick={() => {follow(user.id)}}
+                  >Follow</UserButton> }
+            </LeftBlock>
+            <RightBlock>
+              <Info>
+                <Name>{user.name}&#32;<span>{user.surname != null ? user.fullName.surname : "Unknown"}</span></Name>
+                <Status>{user.status}</Status>
+              </Info>
+              <Location>
+                <p>{"user.location.country,"}</p>
+                <p>{"user.location.city"}</p>
+              </Location>
+            </RightBlock>
+        </Item>
+    )
+  }
+
+
 const Item = styled.li`
   display: grid;
   grid-template-columns: 1fr 6fr;
@@ -77,42 +115,5 @@ const Location = styled.div`
     margin: 0;
   };
 `
-
-const UserItem = ({user, followingInProgress, unfollow, follow }) => {
-
-    return (
-        <Item key={user.id}>
-            <LeftBlock>
-              <NavLink to={'/profile/'+ user.id}>
-                <UserPhoto
-                  src={user.photos.small != null ? user.photos.small : avatar }
-                  alt={`Фото ${user.name} ${user.surname}`}
-                  width='40'
-                  height='40'/>
-              </NavLink>
-              {user.followed
-                ? <UserButton
-                    disabled={followingInProgress.some(id => id === user.id)}
-                    onClick={() => { unfollow(user.id)}}
-                  >Unfollow</UserButton>
-
-                : <UserButton
-                    disabled={followingInProgress.some(id => id === user.id)}
-                    onClick={() => {follow(user.id)}}
-                  >Follow</UserButton> }
-            </LeftBlock>
-            <RightBlock>
-              <Info>
-                <Name>{user.name}&#32;<span>{user.surname != null ? user.fullName.surname : "Unknown"}</span></Name>
-                <Status>{user.status}</Status>
-              </Info>
-              <Location>
-                <p>{"user.location.country,"}</p>
-                <p>{"user.location.city"}</p>
-              </Location>
-            </RightBlock>
-        </Item>
-    )
-  }
 
 export default UserItem;

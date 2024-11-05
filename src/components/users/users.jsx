@@ -3,6 +3,26 @@ import UserItem from "./userItem";
 import Paginator from "../common/paginator/paginator";
 import styled from "styled-components";
 
+let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, usersData, ...props}) => {
+  return (
+    <Section>
+      <Title>Добавь еще друзей!</Title>
+      <Paginator currentPage = {currentPage} totalUsersCount ={totalUsersCount} pageSize = {pageSize} onPageChanged = {onPageChanged} />
+      <Ul>
+        { usersData.map(u =>
+            <UserItem user = {u} followingInProgress = {props.followingInProgress} key = {u.id} unfollow = {props.unfollow} follow = {props.follow}
+            />
+          )
+        }
+      </Ul>
+      <Button>Показать больше возможных друзей</Button>
+    </Section>
+  )
+}
+
+// currentPage = {currentPage} здесь обращаемся на прямую т.к. напрямую объявили в приходящих пропсах
+// follow = {props.follow} тут и в аналогичных местах обращаемся через props т.к. напрямую не указывали, оно берется из "...props"
+
 const Section = styled.section`
   padding: 25px;
 `;
@@ -30,29 +50,6 @@ const Button = styled.button`
   border-radius: 5px;
 `;
 
-let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, usersData, ...props}) => {
-    return (
-      <Section>
-        <Title>Добавь еще друзей!</Title>
 
-        <Paginator currentPage = {currentPage} totalUsersCount ={totalUsersCount} pageSize = {pageSize} onPageChanged = {onPageChanged} />
-
-        <Ul>
-          { usersData.map(u =>
-              <UserItem user = {u} followingInProgress = {props.followingInProgress} key = {u.id} unfollow = {props.unfollow} follow = {props.follow}
-              />
-            )
-          }
-        </Ul>
-
-        <Button>Показать больше возможных друзей</Button>
-
-      </Section>
-    )
-  }
 
 export default Users;
-
-
-// currentPage = {currentPage} здесь обращаемся на прямую т.к. напрямую объявили в приходящих пропсах
-// follow = {props.follow} тут и в аналогичных местах обращаемся через props т.к. напрямую не указывали, оно берется из "...props"

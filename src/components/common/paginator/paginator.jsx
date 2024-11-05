@@ -1,6 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 
+
+
+const Paginator = ({currentPage, totalUsersCount, pageSize, onPageChanged}) => {
+
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    if (i < 10) {
+      pages.push(i);
+    } else {
+      break;
+    }
+  }
+
+  // for (let i = 1; i <= pagesCount; i++) {
+  //     pages.push(i);
+  // }
+
+  return (
+    <WrapPages>
+      <span onClick={(e) => {console.log('Prev')}}>Prev</span>
+      {pages.map(p => {
+        if (currentPage === p) {
+          return <CurrentPage key={ pages.indexOf(p)} onClick={(e) => {onPageChanged(p)}}>{p}</CurrentPage>
+        } else {
+          return <Page key={ pages.indexOf(p)} onClick={(e) => {onPageChanged(p)}}>{p}</Page>
+        }
+      })}
+      <span onClick={(e) => {console.log('Next')}}>Next</span>
+    </WrapPages>
+  )
+}
+
 const WrapPages = styled.div`
   display: flex;
   flex-direction: row;
@@ -21,32 +54,5 @@ const Page = styled.span`
   padding: 8px 13px 5px;
   border: 2px solid #D76F30;
 `
-
-let Paginator = ({currentPage, totalUsersCount, pageSize, onPageChanged}) => {
-
-    let pagesCount = Math.ceil(totalUsersCount / pageSize);
-
-    let pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-      if (i < 10) {
-        pages.push(i);
-      } else {
-        break;
-      }
-    }
-
-    return (
-        <WrapPages>
-          {pages.map(p => {
-            if (currentPage === p) {
-              return <CurrentPage key={ pages.indexOf(p)} onClick={(e) => {onPageChanged(p)}}>{p}</CurrentPage>
-            } else {
-              return <Page key={ pages.indexOf(p)} onClick={(e) => {onPageChanged(p)}}>{p}</Page>
-            }
-          })}
-        </WrapPages>
-    )
-  }
 
 export default Paginator;

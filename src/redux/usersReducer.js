@@ -12,9 +12,9 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "kamasutra/users/TOGGLE_IS_FOLLOWING_PROGRE
 let initialState = {
   usersData: [
   ],
-  pageSize: 5, //задаем сами сколько нужно
+  pageSize: 10, //задаем сами сколько нужно
   totalUsersCount: 25, //эта цифра должна приходить с сервака
-  currentPage: 3,
+  currentPage: 1,
   isFetching: true,
   followingInProgress: [],
 };

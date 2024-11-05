@@ -7,7 +7,6 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, usersData, 
   return (
     <Section>
       <Title>Добавь еще друзей!</Title>
-      <Paginator currentPage = {currentPage} totalUsersCount ={totalUsersCount} pageSize = {pageSize} onPageChanged = {onPageChanged} />
       <Ul>
         { usersData.map(u =>
             <UserItem user = {u} followingInProgress = {props.followingInProgress} key = {u.id} unfollow = {props.unfollow} follow = {props.follow}
@@ -15,7 +14,7 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, usersData, 
           )
         }
       </Ul>
-      <Button>Показать больше возможных друзей</Button>
+      <Paginator currentPage = {currentPage} totalUsersCount ={totalUsersCount} pageSize = {pageSize} onPageChanged = {onPageChanged} />
     </Section>
   )
 }
@@ -29,6 +28,7 @@ const Section = styled.section`
 
 const Title = styled.h2`
   font-size: 20px;
+  text-align: center;
 `;
 
 const Ul = styled.ul`
@@ -38,17 +38,6 @@ const Ul = styled.ul`
   margin-bottom: 30px;
 `;
 
-const Button = styled.button`
-  margin: 0 auto;
-  display: block;
-  box-sizing: border-box;
-  padding: 8px 20px;
-  background-color: #468f56;
-  color:#172D13;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-`;
 
 
 

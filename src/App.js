@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { compose } from 'redux';
 import { withRouter } from './hoc/withRouter';
 import { initializeApp } from './redux/appReducer';
+//import { getMyProfile } from './redux/authReducer';
 const News = lazy(() => import('./components/news/news'));
 const Music = lazy(() =>  import('./components/music/music'));
 const Settings = lazy(() =>  import('./components/settingsLink/settings'));
@@ -19,14 +20,16 @@ const UsersContainer = lazy(() =>  import('./components/users/usersContainer'));
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
-  }
+    //this.props.getMyProfile();
+    // if (!this.props.initialized) {
+    //   return <ClipLoader/>
+    // }
+  };
 
 
 
   render() {
-    // if (!this.props.initialized) {
-    //   return <Preloader/>
-    // }
+
 
     return (
       <BrowserRouter>

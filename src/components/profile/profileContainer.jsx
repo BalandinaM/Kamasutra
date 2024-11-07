@@ -47,10 +47,6 @@ let mapStateToProps = (state) => ({
   status: state.profilePage.status,
 })
 
-//let WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-//export default connect(mapStateToProps, {getProfile})(WithUrlDataContainerComponent);
-
 export default compose(
   connect(mapStateToProps, {getProfile, getUserStatus, updateStatus}),
   withRouter,

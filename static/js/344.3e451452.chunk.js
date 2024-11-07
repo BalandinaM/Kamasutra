@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[344],{344:(s,e,c)=>{c.r(e),c.d(e,{default:()=>l});c(43);const a="music_title__Ny9Kj";var t=c(579);const l=()=>(0,t.jsx)("section",{children:(0,t.jsx)("h2",{className:a,children:"\u041b\u044e\u0431\u0438\u043c\u044b\u0435 \u0442\u0440\u0435\u043a\u0438"})})}}]);
+//# sourceMappingURL=344.3e451452.chunk.js.map

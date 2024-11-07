@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/808.11266389.chunk.css","mappings":"AAAA,mBAEE,aAAc,CADd,cAEF","sources":["components/news/news.module.css"],"sourcesContent":[".title {\n  font-size: 25px;\n  color: #D76F30;\n}\n"],"names":[],"sourceRoot":""}

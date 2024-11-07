@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/42.79573ac2.chunk.css","mappings":"AAAA,wBAEE,aAAc,CADd,cAEF","sources":["components/settingsLink/settings.module.css"],"sourcesContent":[".title {\n  font-size: 25px;\n  color: #D76F30;\n}\n"],"names":[],"sourceRoot":""}

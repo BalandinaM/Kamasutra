@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense  } from 'react';
 import './App.css';
 import Navbar from './components/navbar/navbar';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import ProfileContainer from './components/profile/profileContainer';
 import HeaderContainer from './components/header/headerContainer';
@@ -32,7 +32,7 @@ class App extends Component {
 
 
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="app-wrapper">
           <HeaderContainer />
           <Navbar />
@@ -54,7 +54,7 @@ class App extends Component {
 
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

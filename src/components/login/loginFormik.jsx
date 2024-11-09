@@ -45,12 +45,12 @@ const LoginForm = (props) => {
         <TextInput label="Email" name="email" type="email" placeholder="name@email.ru"/>
         <TextInput label="Password" name="password" type="password" />
         <Checkbox name="rememberMe">Запомнить</Checkbox>
-        <div>
+       { props.isCaptcha ? <div>
           <h3>Подтвердите что вы не робот</h3>
           <p>Введите цифры указанные на картинке</p>
           <img src={props.urlCaptcha} alt="Captcha" />
           <TextInput label="captcha" name="captcha" type="text" defaultValue=""/>
-        </div>
+        </div> : null}
         <button type="submit">Login</button>
       </Form>
     </Formik>

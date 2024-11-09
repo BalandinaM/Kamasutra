@@ -5,7 +5,7 @@ import { login } from "../../redux/authReducer";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 //import styled from "styled-components";
-import TextInput from "../common/inputText/textInput";
+import TextInput from "../common/inputText/textInputNew";
 
 const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: 'checkbox' });
@@ -42,8 +42,8 @@ const LoginForm = (props) => {
       onSubmit={props.onSubmit}
     >
       <Form>
-        <TextInput label="email" name="email" type="email" placeholder="name@email.ru"/>
-        <TextInput label="password" name="password" type="password" />
+        <TextInput label="Email" name="email" type="email" placeholder="name@email.ru"/>
+        <TextInput label="Password" name="password" type="password" />
         <Checkbox name="rememberMe">Запомнить</Checkbox>
         <div>
           <h3>Подтвердите что вы не робот</h3>

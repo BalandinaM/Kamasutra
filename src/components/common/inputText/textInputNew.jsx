@@ -3,58 +3,41 @@ import { useField } from "formik";
 import styled from "styled-components";
 
 const BoxForInput = styled.div`
-  padding: 50px;
-  border: 5px solid red;
-  background-color: yellow;
   display: flex;
-  width: 500px;
   justify-content: center;
   align-items: center;
   gap: 30px;
 `;
 
-//display
-//align-items
-//justify-content
-//gap
-
-
 const Label = styled.label`
-  color: green;
-  font-size: 24px;
-  line-height: 28px;
-  font-style: italic;
+  //visibility: ${(props) => (props.hidden ? "hidden" : "visible")};
+  font-size: 20px;
+  line-height: 24px;
+  color: #D76F30;
 `
-//color (возможно он должен задаватьсяв вообще в глобальных стилях)
-//font-size возмодно имеет смысле реализовать через переменные как у академии
-//lineheight обычно чуть больше чем font-size м.б. считать как нибуть с помощью джс
-// display в зависимости от props
-
-
 const Input = styled.input`
-  padding: 5px;
-  border: 2px solid blue;
-  font-size: 24px;
-  line-height: 28px;
-  color: pink;
+  visibility: visible;
+  padding: 10px 20px;
+  border: 2px solid #172D13;
+  background-color: #8bf478;
+  color: #172D13;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 18px;
+  ::placeholder {
+    color: #8bf478;
+    font-size: 18px;
+    font-style: italic;
+  }
 `
-
-//padding
-//border
-//font-size возмодно имеет смысле реализовать через переменные как у академии
-//lineheight обычно чуть больше чем font-size м.б. считать как нибуть с помощью джс
-//color
-// еще посмотреть как стилизовать плейсхолдер
-
 const ErrorBox = styled.div`
-  background-color: red;
   color: white;
-  font-size: 34px;
+  font-size: 12px;
 `
 
 // наверное имеет смысл сделать одинаковое сообщение об ошибках на всех элементах
 
-const TextInput = ({ label, ...props }) => {
+const TextInput = ({label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <BoxForInput>

@@ -2,14 +2,14 @@ import React from 'react';
 import d from './dialogs.module.css'
 import DialogItem from './dialogsItem/dialogsItem';
 import Talk from './talk/talk';
-//import NewMessageReduxForm from './newMessage/newMessage';
+import NewMessage from './newMessage/newMessageFormik';
 
 const Dialogs = (props) => {
   //debugger;
   let dialogsElements = props.dialogsPage.dialogsData.map(d => <DialogItem userName={d.name} key={d.id} id={d.id} hrefImg={d.hrefImg}/>);
 
-  const addMessage = (value) => {
-    props.sendMessage(value.messageNewText);
+  const submit = (value) => {
+    props.addMessageActionCreator(value.messageNewText);
     console.log(value.messageNewText);
   }
 
@@ -20,7 +20,7 @@ const Dialogs = (props) => {
       </ul>
       {/* Диалог с конкретным пользователем */}
       <Talk postData = {props.dialogsPage.postData}/>
-      {/* <NewMessageReduxForm onSubmit={addMessage}/> */}
+      <NewMessage onSubmit={submit}/>
     </section>
   )
 }

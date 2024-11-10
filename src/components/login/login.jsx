@@ -1,74 +1,85 @@
-//Реализация на Redax-Form, оставить на память)
+import React from "react";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { login } from "../../redux/authReducer";
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+import styled from "styled-components";
+import TextInput from "../common/inputText/textInputNew";
+import Checkbox from "../common/checkbox/checkbox";
+import Captcha from "./Captcha";
 
-// import React from "react";
-// import l from "./login.module.css";
-// import { Field, reduxForm } from "redux-form";
-// import { Input } from "../common/formControls/formControls";
-// import { maxLengthCreator, required } from "../../utils/validators";
-// import { login } from "../../redux/authReducer";
-// import { connect } from "react-redux";
-// import { Navigate } from "react-router-dom";
+const Login = (props) => {
 
-// const maxLength60 = maxLengthCreator(60);
+  const submit = (values, { setSubmitting }) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 400);
+    props.login(values.email, values.password, values.rememberMe, values.captcha);
+    setSubmitting(false);
+  }
 
-// const LoginForm = (props) => {
-//   return (
-//     <form onSubmit={props.handleSubmit}>
-//       <div>
-//         <Field component={Input}
-//         name={"email"}
-//         validate={[required, maxLength60]}
-//         placeholder={"email"} />
-//       </div>
-//       <div>
-//         <Field component={Input}
-//         name={"password"}
-//         validate={[required, maxLength60]}
-//         placeholder={"password"}
-//         type={"password"}/>
-//       </div>
-//       <div>
-//         <Field component="input" type={"checkbox"} name="rememberMe" />
-//         <label htmlFor="remember">Remember me</label>
-//       </div>
-//       {props.error && <div className={l.login_error}>
-//           {props.error}
-//         </div>
-//       }
-//       <div>
-//         <button>Login</button>
-//       </div>
-//     </form>
-//   );
-// };
+  if (props.isAuth) {
+    return <Navigate to="/profile" />;
+  }
 
-// const LoginReduxForm = reduxForm({form:'login'})(LoginForm)
+  return (
+    <Section>
+      <Title>Авторизация</Title>
+      <LoginForm onSubmit={ submit } isCaptcha={ props.isCaptcha } urlCaptcha = { props.urlCaptcha } />
+    </Section>
+  );
+};
 
-// const Login = (props) => {
-//   const onSubmit = (formData) => {
-//     console.log(formData);
-//     props.login(formData.email, formData.password, formData.rememberMe)
-//   };
+const LoginForm = (props) => {
+  return (
+    <Formik
+      initialValues={{ email: "", password: "", rememberMe: false }}
+      validationSchema={Yup.object({
+        password: Yup.string()
+          .max(15, "Must be 15 characters or less")
+          .required("Required"),
+        email: Yup.string().email("Invalid email address").required("Required"),
+        rememberMe: Yup.boolean(),
+        captcha: Yup.string(),
+      })}
+      onSubmit={props.onSubmit}
+    >
+      <FormStyled>
+        <TextInput label="Логин" name="email" type="email" placeholder="name@email.ru"/>
+        <TextInput label="Пароль" name="password" type="password" />
+        <Checkbox name="rememberMe">Запомнить меня</Checkbox>
+        { props.isCaptcha ? <Captcha urlCaptcha = {props.urlCaptcha}/> : null}
+        <button type="submit">Авторизоваться</button>
+      </FormStyled>
+    </Formik>
+  );
+};
 
-//   if (props.isAuth) {
-//     return <Navigate to="/profile" />
-//   }
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  isCaptcha: state.auth.isCaptcha,
+  urlCaptcha: state.auth.urlCaptcha,
+});
 
-//   if (props.isCaptcha) {
-//     console.log("Captha")
-//   }
+export default connect(mapStateToProps, { login })(Login);
 
-//   return (
-//     <section className={l.login_page}>
-//       <h2>Login</h2>
-//       <LoginReduxForm onSubmit={onSubmit} />
-//     </section>
-//   );
-// };
+const FormStyled = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: stretch;
+`;
 
-// const mapStateToProps = (state) => ({
-//   isAuth: state.auth.isAuth,
-//   isCaptcha: state.auth.isCaptcha,
-// })
+const Section = styled.section`
+  width: 400px;
+  margin: 80px auto;
+`;
 
-// export default connect(mapStateToProps, {login})(Login)
+const Title = styled.h2`
+  text-align: center;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 30px;
+`;

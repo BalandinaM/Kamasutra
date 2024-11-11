@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, } from 'formik';
 import * as Yup from 'yup';
-import TextInput from "../../common/inputText/textInput";
+import TextInput from "../../common/inputText/TextInput";
 // import n from './newMessage.module.css';
 // import { Field, reduxForm } from "redux-form";
 // import { Textarea } from "../../common/formControls/formControls";

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, } from 'formik';
 import * as Yup from 'yup';
-import TextInput from '../../../common/inputText/textInput';
+import TextInput from '../../../common/inputText/TextInput';
 
 const NewPost = (props) => {
 

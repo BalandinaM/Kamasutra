@@ -5,7 +5,7 @@ import {HashRouter, Route, Routes} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import ProfileContainer from './components/profile/profileContainer';
 import HeaderContainer from './components/header/headerContainer';
-import Login from './components/login/login';
+import Login from './components/login/Login';
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { withRouter } from './hoc/withRouter';

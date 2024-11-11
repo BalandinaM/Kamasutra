@@ -46,6 +46,17 @@ const TextInput = ({label, ...props }) => {
       {meta.touched && meta.error ? (
         <ErrorBox>{meta.error}</ErrorBox>
       ) : null}
+      {props.iserror ? (
+        <ErrorBox>{props.messageError}</ErrorBox>
+      ) : null}
+      {/* { if {(meta.touched && meta.error)} {
+        <ErrorBox>{meta.error}</ErrorBox>
+      } else if (props.iserror) {
+        <ErrorBox>{props.messageError}</ErrorBox>
+      } else {
+        null
+      }} */}
+
     </BoxForInput>
   );
 };

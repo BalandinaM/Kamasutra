@@ -45,16 +45,27 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-  getProfile(id = 2) {
+  getProfile(id) {
     return instance.get(`profile/` + id).then((response) => response.data);
   },
 
-  getUserStatus(id = 2) {
+  getUserStatus(id) {
     return instance.get(`profile/status/` + id).then((response) => response.data);
   },
 
   updateUserStatus(status) {
     return instance.put(`profile/status`, {status: status});
+  },
+
+  updateUserPhoto(photoFile) {
+    const formData = new FormData();
+    formData.append("image", photoFile);
+
+    return instance.put(`profile/photo`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   }
 };
 

@@ -5,6 +5,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const ADD_LIKE = 'ADD_LIKE';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
   srcImg: 'https://img.freepik.com/free-photo/the-adorable-illustration-of-kittens-playing-in-the-forest-generative-ai_260559-483.jpg?size=338& ext=jpg&ga=GA1.1.2116175301.1714003200&semt=ais',
@@ -17,6 +18,7 @@ let initialState = {
 
   profile: null,
   status: 'Marina Balandina, Frontend-developer',
+  photos: null,
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -54,6 +56,12 @@ const profileReduser = (state = initialState, action) => {
         post)
     }
 
+    case SAVE_PHOTO_SUCCESS:
+      return {...state, //делаем копию стейта
+        profile: {...state.profile, //делаем копию профайла в новом стейте
+          photos: action.photos}// в фото кладем фото пришедшее в экшене
+      }
+
     default:
       return state;
   }
@@ -68,6 +76,8 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
 export const addLike = (postId) => ({type: ADD_LIKE, postId});
+
+export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
 
 
 export const getProfile = (userId) => {
@@ -94,5 +104,13 @@ export const updateStatus = (status) => (dispatch) => {
     }
   })
 };
+
+export const savePhoto = (file) => async (dispatch) => {
+  let response = await profileAPI.updateUserPhoto(file);
+
+  if (response.data.resultCode === 0) {
+    dispatch(savePhotoSuccess(response.data.data.photos));
+  }
+}
 
 export default profileReduser;

@@ -3,16 +3,24 @@ import p from './profileInfo.module.css';
 import Preloader from '../../common/preloader/preloader';
 import ContactsListContainer from './contactsList/contactsListContainer';
 import ProfileStatusWithHooks from './profileStatus/profileStatusWithHooks';
+import userPhoto from './../../../assets/image/Samurai.jpg';
 
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus, savePhoto}) => {
+  if (!profile) {
     return <Preloader />
   }
 
-  // if (!props.status) {
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      console.log('target');
+      savePhoto(e.target.files[0]);
+    }
+  }
+
+  // if (!status) {
   //   alert('!!!!!!')
-  //   props.status = {props.status}
+  //   status = {status}
   // }
 
   return (
@@ -23,15 +31,16 @@ const ProfileInfo = (props) => {
       </div>
       <section className={p.user}>
         <div className={p.wrap_user}>
-          <img className={p.user_photo} src={props.profile.photos.large} alt=''/>
-          <p className={p.user_name}>{props.profile.fullName}</p>
+          <img className={p.user_photo} src={profile.photos.large || userPhoto} alt=''/>
+          <input type={"file"} onChange={onMainPhotoSelected}/>
+          <p className={p.user_name}>{profile.fullName}</p>
         </div>
-        <ProfileStatusWithHooks status={(!props.status) ?
-    console.log('no status!') : props.status
-  } updateStatus={props.updateStatus}/>
+        <ProfileStatusWithHooks status={(!status) ?
+                                console.log('no status!') : status
+                                } updateStatus={updateStatus}/>
         <div className={p.wrap_job}>
-          <p>Рассматриваю предложения о работе. {props.profile.lookingForAJob}</p>
-          <p>{props.profile.lookingForAJobDescription}</p>
+          <p>Рассматриваю предложения о работе. {profile.lookingForAJob}</p>
+          <p>{profile.lookingForAJobDescription}</p>
         </div>
         <h3 className={p.contacts_title}>Связаться со мной</h3>
         <ContactsListContainer />

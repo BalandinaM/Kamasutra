@@ -6,6 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ProfileContainer from './components/profile/profileContainer';
 import HeaderContainer from './components/header/headerContainer';
 import Login from './components/login/Login';
+import Home from './components/home/Home';
 import { connect } from "react-redux";
 import { compose } from 'redux';
 import { withRouter } from './hoc/withRouter';
@@ -20,12 +21,12 @@ class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
     //this.props.getMyProfile();
-    // if (!this.props.initialized) {
-    //   return <ClipLoader/>
-    // }
+    if (!this.props.initialized) {
+      return <ClipLoader/>
+    }
   };
 
-
+/////может сделать компонент home как в учебнике, типа приветственной страницы приложения, которая будет загружаться изначально и отправлять логинитьСЯ ИЛИ АВТОРИЗОВЫВАТЬСЯ, И НЕ БУДЕТ ПРОБЛЕМЫ С ЗАГРУЗКОЙ ПРОФАЙЛА БЕЗ ИД
 
   render() {
 
@@ -39,6 +40,7 @@ class App extends Component {
 
               <Suspense fallback={<ClipLoader />}>
                 <Routes>
+                  <Route path="/" element={<Home />} />
                   <Route path="/profile/*" element={<ProfileContainer />}>
                     <Route path=":userId" element={<ProfileContainer />}></Route>
                   </Route>

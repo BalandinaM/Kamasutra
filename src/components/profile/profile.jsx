@@ -3,14 +3,15 @@ import ProfileInfo from './profileInfo/profileInfo';
 import MyPostsContainer from './myPosts/myPostsContainer';
 
 const Profile = (props) => {
+
   return (
     <div>
       <ProfileInfo
-      isOwner={props.isOwner}
+      isOwner={props.authUserId === props.profile.userId}
       profile={props.profile}
       status={props.status}
-      updateStatus={props.updateStatus} s
-      avePhoto={props.savePhoto}/>
+      updateStatus={props.updateStatus}
+      savePhoto={props.savePhoto}/>
       <MyPostsContainer/>
     </div>
   )

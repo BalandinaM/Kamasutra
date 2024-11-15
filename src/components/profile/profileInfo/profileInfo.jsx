@@ -3,7 +3,7 @@ import p from './profileInfo.module.css';
 import Preloader from '../../common/preloader/preloader';
 import ContactsListContainer from './contactsList/contactsListContainer';
 import ProfileStatusWithHooks from './profileStatus/profileStatusWithHooks';
-import userPhoto from './../../../assets/image/Samurai.jpg';
+//import userPhoto from './../../../assets/image/Samurai.jpg';
 
 
 const ProfileInfo = ({profile, status, updateStatus, savePhoto, isOwner}) => {
@@ -31,13 +31,11 @@ const ProfileInfo = ({profile, status, updateStatus, savePhoto, isOwner}) => {
       </div>
       <section className={p.user}>
         <div className={p.wrap_user}>
-          <img className={p.user_photo} src={profile.photos.large || userPhoto} alt=''/>
+          <img className={p.user_photo} src={profile.photos.large} alt='Тут могло быть ваше фото'/>
           {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
           <p className={p.user_name}>{profile.fullName}</p>
         </div>
-        <ProfileStatusWithHooks status={(!status) ?
-                                console.log('no status!') : status
-                                } updateStatus={updateStatus}/>
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         <div className={p.wrap_job}>
           <p>Рассматриваю предложения о работе. {profile.lookingForAJob}</p>
           <p>{profile.lookingForAJobDescription}</p>

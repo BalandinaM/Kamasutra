@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 import {HashRouter, Route, Routes} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import ProfileContainer from './components/profile/profileContainer';
+import ProfileContainer from './components/profile/profileContainerFunctionComponent';
 import HeaderContainer from './components/header/headerContainer';
 import Login from './components/login/Login';
 import Home from './components/home/Home';

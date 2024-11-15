@@ -22,7 +22,7 @@ const Login = (props) => {
   }
 
   if (props.isAuth) {
-    return <Navigate to="/profile" />;
+    return <Navigate to={'/profile/' + props.userId} />;
   }
 
   return (
@@ -64,6 +64,7 @@ const LoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  userId: state.auth.id,
   isAuth: state.auth.isAuth,
   isCaptcha: state.auth.isCaptcha,
   urlCaptcha: state.auth.urlCaptcha,

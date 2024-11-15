@@ -6,7 +6,7 @@ import ProfileStatusWithHooks from './profileStatus/profileStatusWithHooks';
 import userPhoto from './../../../assets/image/Samurai.jpg';
 
 
-const ProfileInfo = ({profile, status, updateStatus, savePhoto}) => {
+const ProfileInfo = ({profile, status, updateStatus, savePhoto, isOwner}) => {
   if (!profile) {
     return <Preloader />
   }
@@ -32,7 +32,7 @@ const ProfileInfo = ({profile, status, updateStatus, savePhoto}) => {
       <section className={p.user}>
         <div className={p.wrap_user}>
           <img className={p.user_photo} src={profile.photos.large || userPhoto} alt=''/>
-          <input type={"file"} onChange={onMainPhotoSelected}/>
+          {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
           <p className={p.user_name}>{profile.fullName}</p>
         </div>
         <ProfileStatusWithHooks status={(!status) ?

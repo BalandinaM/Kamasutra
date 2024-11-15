@@ -22,23 +22,46 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.params.userId;
     console.log(userId);
-    if (!userId) {
-      userId = 31298;
+    // if (!userId) {
+    //   userId = 31298;
 
-      // if (!userId) {
-      //     this.props.history.push("/login");
-      // }
-    }
+    //   // if (!userId) {
+    //   //     this.props.history.push("/login");
+    //   // }
+    // }
 
     this.props.getProfile(userId)
     this.props.getUserStatus(userId)
+  }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+      //console.log(prevProps);
+      // if (this.props.params.userId !== prevProps.props.params.userId ) {
+      //   //console.log('update')
+      //   // let userId = this.props.params.userId;
+      //   // console.log(userId);
+      //   // // if (!userId) {
+      //   // //   userId = 31298;
+
+      //   // //   // if (!userId) {
+      //   // //   //     this.props.history.push("/login");
+      //   // //   // }
+      //   // // }
+
+      //   // this.props.getProfile(userId)
+      //   // this.props.getUserStatus(userId)
+      // }
   }
 
   render ()
     {
       return (
-        <Profile {...this.props} profile = {this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} savePhoto={this.props.savePhoto}/>
+        <Profile {...this.props}
+        isOwner = {!this.props.params.userId}
+        profile = {this.props.profile}
+        status={this.props.status}
+        updateStatus={this.props.updateStatus}
+        savePhoto={this.props.savePhoto}/>
       )
     }
 }
